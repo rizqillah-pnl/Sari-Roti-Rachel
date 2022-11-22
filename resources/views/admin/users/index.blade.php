@@ -6,7 +6,7 @@
                 <div class="w-1/2 px-4">
                     <div class="w-full flex justify-between">
                         <div>
-                            <h2 class="text-3xl text-primary"><strong>Pelanggan</strong></h2>
+                            <h2 class="text-3xl text-primary"><strong>Pengguna</strong></h2>
                         </div>
                     </div>
                 </div>

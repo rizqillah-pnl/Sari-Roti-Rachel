@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminCustomerController;
 use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\LoginWithGoogleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -41,5 +43,11 @@ Route::get('auth/googlelogin/callback', [LoginWithGoogleController::class, 'hand
 
 // Admin
 Route::get('/admin/produk', [AdminProductController::class, 'index'])->name('admin.produk');
+
+// Pengguna
+Route::get('/admin/pengguna', [AdminUserController::class, 'index'])->name('admin.pengguna');
+
+// Customer
+Route::get('/admin/pelanggan', [AdminCustomerController::class, 'index'])->name('admin.customer');
 
 require __DIR__.'/auth.php';

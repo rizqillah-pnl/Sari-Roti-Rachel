@@ -1,5 +1,5 @@
 <x-container>
-    <div class="navbar">
+    <div class="navbar z-50">
         <div class="navbar-start">
             <div class="dropdown">
                 <label tabindex="0" class="btn btn-ghost lg:hidden">
@@ -13,11 +13,11 @@
                     class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                     <li><a class="text-lg hover:rounded-lg {{ Route::is('/') ? 'font-bold text-primary' : '' }}"
                             href="{{ route('/') }}">Beranda</a></li>
-                    <li><a
+                    <li><a href="{{ route('admin.produk') }}"
                             class="text-lg hover:rounded-lg {{ Route::is('admin.produk') ? 'font-bold text-primary' : '' }}">Produk</a>
                     </li>
-                    <li><a
-                            class="text-lg hover:rounded-lg {{ Route::is('admin.produk') ? 'font-bold text-primary' : '' }}">Pelanggan</a>
+                    <li><a href="{{ route('admin.customer') }}"
+                            class="text-lg hover:rounded-lg {{ Route::is('admin.customer') ? 'font-bold text-primary' : '' }}">Pelanggan</a>
                     </li>
                     <li><a
                             class="text-lg hover:rounded-lg {{ Route::is('admin.produk') ? 'font-bold text-primary' : '' }}">Laporan</a>
@@ -31,7 +31,7 @@
                             </svg>
                         </a>
                         <ul class="p-2">
-                            <li><a class="text-lg hover:rounded-lg">Pengguna</a></li>
+                            <li><a href="{{ route('admin.pengguna') }}" class="text-lg hover:rounded-lg">Pengguna</a></li>
                             <li><a class="text-lg hover:rounded-lg">Instansi</a></li>
                         </ul>
                     </li>
@@ -49,8 +49,8 @@
                 <li><a class="text-lg hover:rounded-lg {{ Route::is('admin.produk') ? 'font-bold text-primary' : '' }}"
                         href="{{ route('admin.produk') }}">Laporan</a>
                 </li>
-                <li><a class="text-lg hover:rounded-lg {{ Route::is('admin.produk') ? 'font-bold text-primary' : '' }}"
-                        href="{{ route('admin.produk') }}">Pelanggan</a>
+                <li><a class="text-lg hover:rounded-lg {{ Route::is('admin.customer') ? 'font-bold text-primary' : '' }}"
+                        href="{{ route('admin.customer') }}">Pelanggan</a>
                 </li>
                 <li tabindex="0">
                     <a>
@@ -60,8 +60,8 @@
                             <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
                         </svg>
                     </a>
-                    <ul class="p-2 bg-white">
-                        <li><a class="text-lg hover:rounded-lg">Pengguna</a></li>
+                    <ul class="p-2 bg-white z-50">
+                        <li><a href="{{ route('admin.pengguna') }}" class="text-lg hover:rounded-lg">Pengguna</a></li>
                         <li><a class="text-lg hover:rounded-lg">Instansi</a></li>
                     </ul>
                 </li>
@@ -77,7 +77,7 @@
                         </div>
                     </label>
                     <ul tabindex="0"
-                        class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                        class="menu menu-compact z-50  dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li>
                             <a class="justify-between">
                                 Profile
