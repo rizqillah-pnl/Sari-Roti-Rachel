@@ -14,7 +14,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('produk.index');
+        return view('produk.index', [
+            "products" => Product::all()
+        ]);
     }
 
     /**
@@ -44,9 +46,13 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
+        $product = Product::where('id', $id)->first();
+
+        return view('produk.show', [
+            "product" => $product
+        ]);
     }
 
     /**

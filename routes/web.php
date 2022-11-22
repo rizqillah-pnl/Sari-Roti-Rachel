@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\LoginWithGoogleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +21,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome',[
+        "products" => Product::all()
+    ]);
 })->name('/');
 
 Route::get('/dashboard', function () {
@@ -35,6 +38,7 @@ Route::middleware('auth')->group(function () {
 
 // Produk
 Route::get('/produk', [ProductController::class, 'index'])->name('produk');
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('produk.show');
 Route::get('/sunday', [ProductController::class, 'sunday'])->name('sunday');
 
 // Login With Google
@@ -42,7 +46,8 @@ Route::get('auth/googlelogin', [LoginWithGoogleController::class, 'redirectToGoo
 Route::get('auth/googlelogin/callback', [LoginWithGoogleController::class, 'handleGoogleCallback'])->name('handlegooglecallback');
 
 // Admin
-Route::get('/admin/produk', [AdminProductController::class, 'index'])->name('admin.produk');
+Route::get('/admin/products', [AdminProductController::class, 'index'])->name('admin.produk');
+Route::get('/admin/products/{id}', [AdminProductController::class, 'show'])->name('admin.product.show');
 
 // Pengguna
 Route::get('/admin/pengguna', [AdminUserController::class, 'index'])->name('admin.pengguna');
