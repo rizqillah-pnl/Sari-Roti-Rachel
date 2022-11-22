@@ -94,13 +94,13 @@
                 <ul tabindex="0"
                     class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                     <li>
-                        <a class="justify-between">
+                        <a class="justify-between" href="{{ route('profile.edit', 1) }}">
                             Profile
                             <span class="badge">New</span>
                         </a>
                     </li>
                     <li><a>Settings</a></li>
-                    @if (!Auth::user()->level === 3)
+                    @if (Auth::user()->level == 1)
                         <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                     @endif
                     <li>
