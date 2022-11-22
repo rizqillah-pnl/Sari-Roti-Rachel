@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.scrolling-wrapper::-webkit-scrollbar {
+    display: none;
+    height: 0;
+    display: var(--scroll-display);
+}
+.scrolling-wrapper::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+.scrolling-wrapper::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 0;
+}
