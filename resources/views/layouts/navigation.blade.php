@@ -100,6 +100,9 @@
                         </a>
                     </li>
                     <li><a>Settings</a></li>
+                    @if (!Auth::user()->level === 3)
+                        <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                    @endif
                     <li>
                         <form action="{{ route('logout') }}" method="post">
                         @csrf

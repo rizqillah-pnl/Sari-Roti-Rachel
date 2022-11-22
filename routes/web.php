@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\LoginWithGoogleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -45,12 +46,15 @@ Route::get('/sunday', [ProductController::class, 'sunday'])->name('sunday');
 Route::get('auth/googlelogin', [LoginWithGoogleController::class, 'redirectToGoogle'])->name('redirecttogoogle');
 Route::get('auth/googlelogin/callback', [LoginWithGoogleController::class, 'handleGoogleCallback'])->name('handlegooglecallback');
 
-// Admin
+// Admin Product
 Route::get('/admin/products', [AdminProductController::class, 'index'])->name('admin.produk');
 Route::get('/admin/products/{id}', [AdminProductController::class, 'show'])->name('admin.product.show');
 
-// Pengguna
+// Admin Pengguna
 Route::get('/admin/pengguna', [AdminUserController::class, 'index'])->name('admin.pengguna');
+
+// Admin Report
+Route::get('/admin/report', [ReportController::class, 'index'])->name('admin.report');
 
 // Customer
 Route::get('/admin/pelanggan', [AdminCustomerController::class, 'index'])->name('admin.customer');

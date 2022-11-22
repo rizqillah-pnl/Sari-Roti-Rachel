@@ -12,15 +12,15 @@
                 <ul tabindex="0"
                     class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                     <li><a class="text-lg hover:rounded-lg {{ Route::is('/') ? 'font-bold text-primary' : '' }}"
-                            href="{{ route('/') }}">Beranda</a></li>
+                            href="{{ route('dashboard') }}">Beranda</a></li>
                     <li><a href="{{ route('admin.produk') }}"
                             class="text-lg hover:rounded-lg {{ Route::is('admin.produk') ? 'font-bold text-primary' : '' }}">Produk</a>
                     </li>
                     <li><a href="{{ route('admin.customer') }}"
                             class="text-lg hover:rounded-lg {{ Route::is('admin.customer') ? 'font-bold text-primary' : '' }}">Pelanggan</a>
                     </li>
-                    <li><a
-                            class="text-lg hover:rounded-lg {{ Route::is('admin.produk') ? 'font-bold text-primary' : '' }}">Laporan</a>
+                    <li><a href="{{ route('admin.report') }}"
+                            class="text-lg hover:rounded-lg {{ Route::is('admin.report') ? 'font-bold text-primary' : '' }}">Laporan</a>
                     </li>
                     <li tabindex="0">
                         <a class="justify-between">
@@ -42,12 +42,12 @@
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal p-0">
                 <li><a class="text-lg hover:rounded-lg {{ Route::is('/') ? 'font-bold text-primary' : '' }} {{ Route::is('/') ? 'font-bold text-primary' : '' }}"
-                        href="{{ route('/') }}">Beranda</a></li>
+                        href="{{ route('dashboard') }}">Beranda</a></li>
                 <li><a class="text-lg hover:rounded-lg {{ Route::is('admin.produk') ? 'font-bold text-primary' : '' }}"
                         href="{{ route('admin.produk') }}">Produk</a>
                 </li>
-                <li><a class="text-lg hover:rounded-lg {{ Route::is('admin.produk') ? 'font-bold text-primary' : '' }}"
-                        href="{{ route('admin.produk') }}">Laporan</a>
+                <li><a class="text-lg hover:rounded-lg {{ Route::is('admin.report') ? 'font-bold text-primary' : '' }}"
+                        href="{{ route('admin.report') }}">Laporan</a>
                 </li>
                 <li><a class="text-lg hover:rounded-lg {{ Route::is('admin.customer') ? 'font-bold text-primary' : '' }}"
                         href="{{ route('admin.customer') }}">Pelanggan</a>
@@ -84,7 +84,7 @@
                                 <span class="badge">New</span>
                             </a>
                         </li>
-                        <li><a class="text-lg hover:rounded-lg">Settings</a></li>
+                        <li><a class="hover:rounded-lg">Settings</a></li>
                         <li>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
