@@ -12,10 +12,17 @@ class AdminUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if (isset($request)) {
+            $user = User::where('name', 'LIKE', '%' . $request->search)->paginate(8);
+        }else{
+            $user = User::paginate(8)->get();
+        }
+
+
         return view('admin.users.index', [
-            "users" => User::all()
+            "users" => $user
         ]);
     }
 

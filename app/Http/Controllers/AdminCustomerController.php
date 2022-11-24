@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminCustomerController extends Controller
@@ -13,7 +14,10 @@ class AdminCustomerController extends Controller
      */
     public function index()
     {
-        return view('admin.customers.index');
+        $user = User::all();
+        return view('admin.customers.index', [
+            "users" => $user
+        ]);
     }
 
     /**

@@ -33,7 +33,7 @@
                     <h2 class="text-3xl text-primary"><strong>Products</strong></h2>
                 </div>
                 <div class="flex gap-3 relative">
-                    <a href=""><svg xmlns="http://www.w3.org/2000/svg"
+                    <a href="{{ route('admin.cart') }}"><svg xmlns="http://www.w3.org/2000/svg"
                             class="icon icon-tabler icon-tabler-shopping-cart mr-6 text-primary" width="32"
                             height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                             stroke-linecap="round" stroke-linejoin="round">

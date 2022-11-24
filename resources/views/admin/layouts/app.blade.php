@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Sari Roti</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
@@ -22,6 +22,9 @@
     @endif
     {{ $slot }}
     @include('admin.layouts.footer')
+
+
+     @include('sweetalert::alert')
     <script>
         const mouseWheel = document.querySelector('.scrolling-wrapper');
 

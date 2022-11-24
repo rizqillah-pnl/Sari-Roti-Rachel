@@ -23,7 +23,7 @@
                             class="text-lg hover:rounded-lg {{ Route::is('admin.report') ? 'font-bold text-primary' : '' }}">Laporan</a>
                     </li>
                     <li tabindex="0">
-                        <a class="justify-between">
+                        <a class="justify-between focus:bg-secondary focus:text-red-500">
                             Pengaturan
                             <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24">
@@ -53,7 +53,7 @@
                         href="{{ route('admin.customer') }}">Pelanggan</a>
                 </li>
                 <li tabindex="0">
-                    <a>
+                    <a class="text-lg hover:rounded-lg focus:bg-secondary focus:text-red-500">
                         Pengaturan
                         <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                             viewBox="0 0 24 24">

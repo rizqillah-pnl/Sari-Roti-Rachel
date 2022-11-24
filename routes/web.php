@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminCustomerController;
+use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\LoginWithGoogleController;
@@ -51,8 +52,16 @@ Route::get('auth/googlelogin/callback', [LoginWithGoogleController::class, 'hand
 Route::get('/admin/products', [AdminProductController::class, 'index'])->name('admin.produk');
 Route::get('/admin/products/{id}', [AdminProductController::class, 'show'])->name('admin.product.show');
 
-// Admin Pengguna
+// Admin Order
+Route::post('/admin/orders/{product}', [AdminOrderController::class, 'store'])->name('admin.orders.store');
+Route::delete('/admin/orders/{product}', [AdminOrderController::class, 'destroy'])->name('admin.orders.destroy');
+
+// Admin Cart
+Route::get('/admin/cart', [AdminOrderController::class,'cart'])->name('admin.cart');
+
+// Admin Customers
 Route::get('/admin/pengguna', [AdminUserController::class, 'index'])->name('admin.pengguna');
+Route::delete('/admin/customers/{id}', [AdminUserController::class, 'destor'])->name('admin.customers.destroy');
 
 // Admin Report
 Route::get('/admin/report', [ReportController::class, 'index'])->name('admin.report');

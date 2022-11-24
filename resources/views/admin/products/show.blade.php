@@ -16,36 +16,56 @@
                         @else
                             <div class="badge badge-primary">Tidak Tersedia</div>
                         @endif
-                        <p class="pt-8 text-lg">Stok : {{ $product->stok }}</p>
-                        <p class="py-2 text-lg">Harga : Rp. {{ $product->price }}</p>
-                        <p class="text-gray text-lg">{{ $product->description }}</p>
+                        <p class="pt-8 text-lg text-dark">Stok : {{ $product->stok }}</p>
+                        <p class="py-2 text-lg text-dark">Harga : Rp. {{ $product->price }}</p>
+                        <p class="text-dark text-lg">{{ $product->description }} Lorem ipsum dolor sit, amet consectetur
+                            adipisicing elit. Perferendis soluta incidunt voluptates alias et! Dolore, rem incidunt.
+                            Non, consequuntur labore!</p>
                     </div>
-                    <form action="" method="post">
-                        <div class="flex justify-start gap-4 py-12">
-                            <div class="form-group flex items-center gap-4">
-                                <button class="py-2 pb-0 px-2 shadow-md  bg-secondary text-white rounded-md"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus"
-                                        width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                        stroke="currentColor" fill="none" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    </svg></button>
-                                <input type="text" value="1" class="w-10 h-10 rounded-md border-none shadow-md">
-                                <span class="py-2 pb-0 px-2 shadow-md bg-secondary text-white rounded-md"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-minus"
-                                        width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                        stroke="currentColor" fill="none" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    </svg></span>
-                            </div>
-                            <div><button type="submit" class="bg-primary text-white ml-12 px-3 py-2 font-medium rounded-md">Pesan</button></div>
-                        </div>
-                    </form>
+                    <div class="flex justify-start gap-4 py-12">
+                        <form class="flex items-center gap-4" method="post" action="{{ route('admin.orders.store', $product->id) }}">
+                        @csrf
+                            <button class="py-2 px-2 shadow-md bg-secondary text-white rounded-md" onclick="minus()"
+                                type="button"><svg xmlns="http://www.w3.org/2000/svg"
+                                    class="icon icon-tabler icon-tabler-minus" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg></button>
+                            <input type="number" value="1" id="total_order"
+                                class="w-[10%] h-10 rounded-md border-none shadow-md" name="total_order">
+                            <button class="py-2 px-2 shadow-md  bg-secondary text-white rounded-md" type="button"
+                                onclick="plus()"><svg xmlns="http://www.w3.org/2000/svg"
+                                    class="icon icon-tabler icon-tabler-plus" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg></button>
+
+                            <button type="submit"
+                                class="bg-primary text-white ml-12 px-3 py-2 font-medium rounded-md">Pesan</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </x-container>
     </section>
     {{-- akhir semua produk --}}
+
+    <script>
+        const total_order = document.getElementById("total_order");
+
+        function plus() {
+            total_order.value++
+        }
+
+        function minus() {
+            if (total_order.value != 0 && total_order.value > 1) {
+                total_order.value--
+            }
+        }
+    </script>
 </x-app-layout>
