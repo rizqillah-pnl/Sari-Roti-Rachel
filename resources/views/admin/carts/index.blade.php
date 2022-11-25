@@ -1,14 +1,14 @@
 <x-app-layout>
 
     {{-- breadcumbs --}}
-    <section id="breadcumbs">
+    <section id="breadcumbs" class="py-6">
         <x-container>
             <div class="flex flex-wrap">
                 <div class="w-full px-4">
                     <div class="text-sm breadcrumbs">
                         <ul>
                             <li><a href="{{ route('dashboard') }}">Beranda</a></li>
-                            <li>Checkout</li>
+                            <li class="font-semibold">Checkout</li>
                         </ul>
                     </div>
                 </div>
@@ -69,10 +69,10 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $order_detail->product->name }}</td>
                                 <td>{{ $order_detail->order_quantity }}</td>
-                                <td>{{ $order_detail->product->price }}</td>
-                                <td>{{ $order_detail->total_price }}</td>
+                                <td>Rp. {{ number_format($order_detail->product->price) }}</td>
+                                <td>Rp. {{ number_format($order_detail->total_price) }}</td>
                                 <td>
-                                    <form action="{{ route('admin.order.destroy', $order_detail->id) }}"
+                                    <form action="{{ route('admin.orders.destroy', $order_detail->id) }}"
                                         method="post">
                                         @csrf
                                         @method('delete')
