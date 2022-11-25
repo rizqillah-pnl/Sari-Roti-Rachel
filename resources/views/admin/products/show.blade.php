@@ -3,12 +3,12 @@
     <section id="semua-produk">
         <x-container>
             <h2 class="text-3xl pt-20 pb-10 px-4 text-primary"><strong>Products</strong></h2>
-            <div class="flex flex-wrap rounded-md bg-white shadow-md">
-                <div class="w-full md:w-1/2 px-4">
+            <div class="px-4 flex flex-wrap rounded-md ">
+                <div class="w-full md:w-1/2 px-4 bg-white rounded-l-md">
                     <img src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//95/MTA-13708732/sari-roti_sari-roti-sobek-coklat-keju-216-gr_full01.jpg"
                         alt="" class="w-80 mx-auto">
                 </div>
-                <div class="w-full md:w-1/2 px-4">
+                <div class="w-full md:w-1/2 px-4 bg-white rounded-r-md">
                     <div class="">
                         <h3 class="pt-8 pb-2 text-3xl font-bold text-primary">{{ $product->name }}</h3>
                         @if ($product->stok)

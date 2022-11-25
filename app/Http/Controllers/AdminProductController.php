@@ -12,10 +12,16 @@ class AdminProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if(isset($request)) {
+            $product = Product::where('name', 'LIKE', '%' . $request->search . '%' )->paginate(8);
+        }else {
+            $product = Product::paginate(8);
+        }
+
         return view('admin.products.index', [
-            "products" => Product::all()
+            "products" => $product
         ]);
     }
 

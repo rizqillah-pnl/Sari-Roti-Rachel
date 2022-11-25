@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\LoginWithGoogleController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
@@ -59,6 +60,12 @@ Route::delete('/admin/orders/{order}', [AdminOrderController::class, 'destroy'])
 
 // Admin Cart
 Route::get('/admin/cart', [AdminCartController::class,'index'])->name('admin.cart');
+
+// Checkout
+Route::post('/admin/checkout', [AdminOrderController::class, 'checkout'])->name('admin.checkout');
+
+// Admin Histories
+Route::get('/admin/history', [AdminOrderController::class, 'index'])->name('admin.history');
 
 // Admin Customers
 Route::get('/admin/pengguna', [AdminUserController::class, 'index'])->name('admin.pengguna');

@@ -15,7 +15,7 @@ class AdminUserController extends Controller
     public function index(Request $request)
     {
         if (isset($request)) {
-            $user = User::where('name', 'LIKE', '%' . $request->search)->paginate(8);
+            $user = User::where('name', 'LIKE', '%' . $request->search . '%')->paginate(8);
         }else{
             $user = User::paginate(8)->get();
         }

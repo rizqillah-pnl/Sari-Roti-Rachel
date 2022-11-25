@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
@@ -18,7 +19,20 @@ class AdminOrderController extends Controller
      */
     public function index()
     {
-        //
+        $order = Order::where('user_id', Auth::user()->id)->where('status', 1)->get();
+        // dd($order);
+
+        foreach ($order as $ord) {
+            $user = Order::where('customer_name', $ord->customer_name)->first() ;
+        }
+
+        if (!empty($order)) {
+            return view('admin.histories.index', [
+                "orders" => $order,
+                "users" => $user
+            ]);
+        } else {
+        }
     }
 
     /**
@@ -54,6 +68,7 @@ class AdminOrderController extends Controller
 
         if (empty($checkOrder)) {
             $dataOrder['user_id'] = Auth::user()->id;
+            $dataOrder['customer_name'] = "-";
             $dataOrder['order_date'] = now();
             $dataOrder['status'] = 0;
             $dataOrder['total_order_price'] = $product->price * $request->total_order;
@@ -93,6 +108,25 @@ class AdminOrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
+    public function checkout(Request $request) {
+        $order = Order::where('user_id', Auth::user()->id)->where('status', 0)->first();
+        $dataOrder['customer_name'] = $request->customer_name;
+        $dataOrder['status'] = 1;
+        Order::where('id', $order->id)->update($dataOrder);
+
+        $detailOrders = OrderDetail::where('order_id', $order->id)->get();
+        foreach ($detailOrders as $detailOrder) {
+            $product = Product::where('id', $detailOrder->product_id)->first();
+            $dataProduct['order_quantity'] = $product->stok - $detailOrder->order_quantity;
+            Product::where('id', $product->id)->update($dataProduct);
+        }
+
+        FacadesAlert::success('Berhasil', 'Pesanan Berhasil di Konfirmasi');
+
+        return redirect('/admin/history');
+    }
+
+
     public function show(Order $order)
     {
         //

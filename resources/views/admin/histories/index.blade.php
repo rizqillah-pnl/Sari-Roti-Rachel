@@ -16,7 +16,7 @@
         </x-container>
     </section>
     {{-- Akhir breadcumbs --}}
-    @if (!empty($order))
+    @if (!empty($orders))
         {{-- cari produk --}}
         <section id="cari-produk" class="pt-20 pb-8">
             <x-container>
@@ -24,7 +24,7 @@
                     <div class="w-1/2 px-4">
                         <div class="w-full flex justify-between">
                             <div>
-                                <h2 class="text-3xl text-primary"><strong>Keranjang</strong></h2>
+                                <h2 class="text-3xl text-primary"><strong>Riwayat Pemesanan</strong></h2>
                             </div>
                         </div>
                     </div>
@@ -54,26 +54,33 @@
                 <div class="w-full px-4 rounded-md">
                     <table class="table w-full pt-4">
                         <thead>
-                            <tr >
+                            <tr>
                                 <th>No</th>
-                                <th>Produk</th>
-                                <th>Jumlah</th>
-                                <th>Harga</th>
-                                <th align="right">Total Harga</th>
+                                <th>Pengguna</th>
+                                <th>Pembeli</th>
+                                <th>Tanggal</th>
+                                <th>Status</th>
+                                <th>Total Harga</th>
                                 <th width="10%">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($order_details as $order_detail)
+                            @forelse ($orders as $order)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $order_detail->product->name }}</td>
-                                    <td>{{ $order_detail->order_quantity }}</td>
-                                    <td>Rp. {{ number_format($order_detail->product->price) }}</td>
-                                    <td align="right">Rp. {{ number_format($order_detail->total_price) }}</td>
+                                    <td>{{ $order->user->name }}</td>
+                                        <td>{{ $users->customer_name }}</td>
+                                    <td>{{ $order->order_date }}</td>
                                     <td>
-                                        <form action="{{ route('admin.orders.destroy', $order_detail->id) }}"
-                                            method="post">
+                                        @if ($order->status == 1)
+                                            <div class="badge badge-success text-white">Sudah Bayar</div>
+                                        @else
+                                            <div class="badge badge-warning text-white">Belum Membayar</div>
+                                        @endif
+                                    </td>
+                                    <td>Rp. {{ number_format($order->total_order_price) }}</td>
+                                    <td>
+                                        <form action="{{ route('admin.orders.destroy', $order->id) }}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-sm btn-error text-white"><svg
@@ -96,38 +103,9 @@
                                         </form>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td align="right" colspan="4">Total Harga : </td>
-                                    <td align="right">Rp. {{ number_format($order->total_order_price) }}</td>
-                                    <td></td>
-                                </tr>
-                                <form action="{{ route('admin.checkout') }}" method="post">
-                                @csrf
-                                <tr>
-                                    <td colspan="4" align="right">Nama Pelanggan : </td>
-                                    <td align="right">
-                                            <div class="form-group">
-                                                <select name="customer_name" id="customer_name" class="rounded-md border-0 shadow-md w-full">
-                                                    @foreach ($users as $user)
-                                                        @if ($user->id != 1)
-                                                        <option value="{{ $user->name }}">{{ $user->name }}</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                    </td>
-                                    <td></td>
-                                    </tr>
-                                    <tr>
-                                    <td align="right" colspan="5">
-                                        <button class="btn btn-success text-white" type="submit">Konfirmasi Pesanan!</button>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                </form>
                             @empty
                                 <tr>
-                                    <td colspan="5">Belum ada pelanggan</td>
+                                    <td colspan="5">Belum ada Riwayat Pemesanan!</td>
                                     <td></td>
                                 </tr>
                             @endforelse
@@ -138,6 +116,6 @@
         </section>
         {{-- akhir cart --}}
     @else
-        <h3 class="text-center">Pesanan tidak ada!</h3>
+        <h3 class="text-center">Tidak ada riwayat pemesanan Produk!</h3>
     @endif
 </x-app-layout>
