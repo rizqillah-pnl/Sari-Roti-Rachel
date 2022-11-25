@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminCartController;
 use App\Http\Controllers\AdminCustomerController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminProductController;
@@ -54,10 +55,10 @@ Route::get('/admin/products/{id}', [AdminProductController::class, 'show'])->nam
 
 // Admin Order
 Route::post('/admin/orders/{product}', [AdminOrderController::class, 'store'])->name('admin.orders.store');
-Route::delete('/admin/orders/{product}', [AdminOrderController::class, 'destroy'])->name('admin.orders.destroy');
+Route::delete('/admin/orders/{order}', [AdminOrderController::class, 'destroy'])->name('admin.orders.destroy');
 
 // Admin Cart
-Route::get('/admin/cart', [AdminOrderController::class,'cart'])->name('admin.cart');
+Route::get('/admin/cart', [AdminCartController::class,'index'])->name('admin.cart');
 
 // Admin Customers
 Route::get('/admin/pengguna', [AdminUserController::class, 'index'])->name('admin.pengguna');

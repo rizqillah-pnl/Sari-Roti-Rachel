@@ -129,21 +129,10 @@ class AdminOrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        Order::destroy('id', $order->id);
+
+        FacadesAlert::success('Berhasil', "Pesanan Berhasil Dihapus");
+        return redirect()->route('admin.produk');
     }
 
-    public function cart()
-    {
-        $order = Order::where('user_id', Auth::user()->id)->where('status', 0)->first();
-
-        if (!empty($order)) {
-            $order_details = OrderDetail::where('id', $order->id)->get();
-
-            return view('admin.carts.index', [
-                "order" => $order,
-                "order_details" => $order_details
-            ]);
-        }else {
-        }
-    }
 }

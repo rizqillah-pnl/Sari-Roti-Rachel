@@ -11,7 +11,7 @@
                 </label>
                 <ul tabindex="0"
                     class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><a class="text-lg hover:rounded-lg {{ Route::is('/') ? 'font-bold text-primary' : '' }}"
+                    <li><a class="text-lg hover:rounded-lg {{ Route::is('dashboard') ? 'font-bold text-primary' : '' }}"
                             href="{{ route('dashboard') }}">Beranda</a></li>
                     <li><a href="{{ route('admin.produk') }}"
                             class="text-lg hover:rounded-lg {{ Route::is('admin.produk') ? 'font-bold text-primary' : '' }}">Produk</a>
@@ -41,7 +41,7 @@
         </div>
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal p-0">
-                <li><a class="text-lg hover:rounded-lg {{ Route::is('/') ? 'font-bold text-primary' : '' }} {{ Route::is('/') ? 'font-bold text-primary' : '' }}"
+                <li><a class="text-lg hover:rounded-lg {{ Route::is('dashboard') ? 'font-bold text-primary' : '' }} {{ Route::is('/') ? 'font-bold text-primary' : '' }}"
                         href="{{ route('dashboard') }}">Beranda</a></li>
                 <li><a class="text-lg hover:rounded-lg {{ Route::is('admin.produk') ? 'font-bold text-primary' : '' }}"
                         href="{{ route('admin.produk') }}">Produk</a>

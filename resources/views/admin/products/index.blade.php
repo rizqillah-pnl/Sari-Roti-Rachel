@@ -49,9 +49,13 @@
                                 if (!empty(Auth::user()->id)) {
                                     $order = App\Models\Order::where('status', 0)->where('user_id', Auth::user()->id)->first();
                                 }
-                                $orderDetails = App\Models\OrderDetail::where('order_id', $order->id)->count();
+                                if (!empty($order)) {
+                                    $orderDetails = App\Models\OrderDetail::where('order_id', $order->id)->count();
+                                }
                             @endphp
+                            @if (!empty($orderDetails))
                             {{ $orderDetails }}
+                            @endif
                             </div>
                     </a>
                     <a href=""><svg xmlns="http://www.w3.org/2000/svg"

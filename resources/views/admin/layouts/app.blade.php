@@ -16,7 +16,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body>
+<body class="bg-slate-50">
     @if (!Route::is('register') && !Route::is('login'))
         @include('admin.layouts.navigation')
     @endif
