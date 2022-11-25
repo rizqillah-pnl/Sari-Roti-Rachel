@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminCustomerController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\LoginWithGoogleController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -74,7 +75,10 @@ Route::delete('/admin/customers/{id}', [AdminUserController::class, 'destor'])->
 // Admin Report
 Route::get('/admin/report', [ReportController::class, 'index'])->name('admin.report');
 
-// Customer
+// Admin Customer
 Route::get('/admin/pelanggan', [AdminCustomerController::class, 'index'])->name('admin.customer');
+
+// Customer History
+Route::get('history', [HistoryController::class, 'index'])->name('history');
 
 require __DIR__.'/auth.php';
