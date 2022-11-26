@@ -88,7 +88,7 @@
     {{-- Product Unggulan --}}
     <section id="product-unggulan" class="pt-12 pb-24 bg-slate-200 -mt-32">
         <x-container>
-            <h2 class="text-3xl pt-20 pb-10 px-4">Product <strong>Unggulan</strong></h2>
+            <h2 class="text-3xl pt-20 pb-10 px-4">Roti <strong>Unggulan</strong></h2>
             <div class="flex gap-4 mx-4 overflow-x-scroll">
             @foreach ($products as $product)
                 <div class="w-72 md:w-1/4 flex-none bg-white rounded-md shadow-md mb-4">
@@ -206,7 +206,7 @@
         <x-container>
             <div class="w-full flex justify-between pt-20 pb-10 px-4">
                 <div>
-                    <h2 class="text-3xl text-primary"><strong>Products</strong></h2>
+                    <h2 class="text-3xl text-primary"><strong>Roti</strong></h2>
                 </div>
                 <div class="text-right">
                     <a href="{{ route('produk') }}" class="text-lg px-4 rounded-md text-white py-2 bg-secondary">Lihat Semua</a>

@@ -74,7 +74,7 @@
                 @php
                     if (!empty(Auth::user()->id)) {
                         $order = App\Models\Order::where('status', 1)
-                            ->where('user_id', Auth::user()->id)
+                            ->where('customer_name', Auth::user()->name)
                             ->first();
                     }
                     if (!empty($order)) {

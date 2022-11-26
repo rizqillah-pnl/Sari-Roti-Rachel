@@ -2,7 +2,7 @@
     {{-- semua produk --}}
     <section id="semua-produk">
         <x-container>
-            <h2 class="text-3xl pt-20 pb-10 px-4 text-primary"><strong>Products</strong></h2>
+            <h2 class="text-3xl pt-20 pb-10 px-4 text-primary"><strong>Semua Roti</strong></h2>
             <div class="flex flex-wrap">
                 @foreach ($products as $product)
                     <div class="w-1/2 md:w-1/4 px-4">

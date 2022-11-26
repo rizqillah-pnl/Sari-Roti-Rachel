@@ -51,10 +51,17 @@
         {{-- daftar --}}
         <section id="daftar" class="pt-4">
             <x-container>
-                <div class="w-full flex px-4 mb-8">
+                <div class="w-full flex justify-between px-4 mb-8">
                     <div>
                         <p>Level</p>
                         <div class="badge bg-greesn-500">Panda</div>
+                    </div>
+                    @php
+                        $order = App\Models\Order::where('status', 1)->where('customer_name', Auth::user()->name)->sum('total_order_price');
+                    @endphp
+                    <div>
+                        <h4>Total Pemesanan</h4>
+                        <p class="font-semibold text-right">Rp. {{ $order }}</p>
                     </div>
                 </div>
                 <div class="flex flex-wrap">
