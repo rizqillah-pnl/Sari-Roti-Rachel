@@ -52,7 +52,7 @@
                 <li><a class="text-lg hover:rounded-lg {{ Route::is('admin.customer') ? 'font-bold text-primary' : '' }}"
                         href="{{ route('admin.customer') }}">Pelanggan</a>
                 </li>
-                <li tabindex="0">
+                <li tabindex="0" class="bg-white rounded-lg">
                     <a class="text-lg hover:rounded-lg focus:bg-secondary focus:text-red-500">
                         Pengaturan
                         <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20"

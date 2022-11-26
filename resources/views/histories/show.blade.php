@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
     {{-- semua-order-detail --}}
     <section id="semua-produk">
         <x-container>
@@ -37,4 +37,4 @@
         </x-container>
     </section>
     {{-- akhir semua-order-detail --}}
-</x-app-layout>
+</x-guest-layout>

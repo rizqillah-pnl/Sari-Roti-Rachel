@@ -67,13 +67,10 @@
                         if (!empty(Auth::user()->id)) {
                             $order = App\Models\Order::where('status', 1)
                                 ->where('user_id', Auth::user()->id)
-                                ->first();
-                        }
-                        if (!empty($order)) {
-                            $orderDetails = App\Models\OrderDetail::where('order_id', $order->id)->count();
+                                ->count();
                         }
                     @endphp
-                    @if (!empty($orderDetails))
+                    @if (!empty($order))
                     <a href="{{ route('admin.history') }}"><svg xmlns="http://www.w3.org/2000/svg"
                             class="icon icon-tabler icon-tabler-history" width="32" height="32"
                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -84,7 +81,7 @@
                         </svg>
                         <div
                             class="badge badge-sm border-none text-white py-2.5  bg-secondary border border-secondary shadow-lg absolute top-0 right-0 text-xs">
-                            {{ $orderDetails }}</div>
+                            {{ $order }}</div>
                     </a>
                     @endif
                 </div>

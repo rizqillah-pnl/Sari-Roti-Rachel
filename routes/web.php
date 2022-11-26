@@ -81,5 +81,6 @@ Route::get('/admin/pelanggan', [AdminCustomerController::class, 'index'])->name(
 
 // Customer History
 Route::get('history', [HistoryController::class, 'index'])->name('history');
+Route::get('history/{order}', [OrderController::class, 'show'])->name('history.show');
 
 require __DIR__.'/auth.php';

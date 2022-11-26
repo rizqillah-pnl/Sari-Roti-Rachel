@@ -60,11 +60,11 @@
                     <div>
                         <p>Level</p>
                         @if ($order > 100000 && $order < 200000)
-                            <div class="badge bg-amber-900">Nanas</div>
+                            <div class="badge bg-amber-900 border-0">Nanas</div>
                         @elseif ($order > 200000)
-                            <div class="badge bg-yellow-500">Cokelat</div>
+                            <div class="badge bg-yellow-500 border-0">Cokelat</div>
                         @else
-                            <div class="badge bg-grees-500">Pandan</div>
+                            <div class="badge bg-green-500 border-0">Pandan</div>
                         @endif
                     </div>
 
@@ -89,7 +89,7 @@
                                             Rp.{{ number_format($order->total_order_price) }}</span>
                                     </li>
                                     <li class="bg-white flex justify-center items-center">
-                                        <a href="" class=" text-white px-2 py-2 bg-green-500 rounded-md"><svg
+                                        <a href="{{ route('history.show', $order->id) }}" class=" text-white px-2 py-2 bg-green-500 rounded-md"><svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 class="icon icon-tabler icon-tabler-eye-check" width="24"
                                                 height="24" viewBox="0 0 24 24" stroke-width="2"

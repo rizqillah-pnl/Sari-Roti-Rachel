@@ -165,7 +165,7 @@ class AdminOrderController extends Controller
         Order::destroy('id', $order->id);
 
         FacadesAlert::success('Berhasil', "Pesanan Berhasil Dihapus");
-        return redirect()->route('admin.produk');
+        return redirect()->route('admin.history');
     }
 
 }
