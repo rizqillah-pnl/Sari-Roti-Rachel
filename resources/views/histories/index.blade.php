@@ -51,7 +51,7 @@
         {{-- daftar --}}
         <section id="daftar" class="pt-4">
             <x-container>
-                <div class="w-full flex ">
+                <div class="w-full flex px-4 mb-8">
                     <div>
                         <p>Level</p>
                         <div class="badge bg-greesn-500">Panda</div>
@@ -59,9 +59,9 @@
                 </div>
                 <div class="flex flex-wrap">
                     <div class="w-full px-4 rounded-md">
-                        <ul class="bg-white shadow-md p-3 rounded-md">
+                        <ul class="rounded-md">
                             @forelse ($orders as $order)
-                                <div class="flex justify-between">
+                                <div class="flex justify-between mb-4 bg-white shadow-md p-4">
                                     <li class="bg-white">
                                         <label for="harga" class="block mb-2 text-dark text-sm">Tanggal Pesanan</label>
                                         <span class="text-dark font-medium"> {{ $order->order_date }}</span>
