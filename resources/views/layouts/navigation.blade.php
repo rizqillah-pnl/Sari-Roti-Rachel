@@ -73,15 +73,10 @@
             @if (Auth::user())
                 @php
                     if (!empty(Auth::user()->id)) {
-                        $order = App\Models\Order::where('status', 1)
-                            ->where('customer_name', Auth::user()->name)
-                            ->first();
-                    }
-                    if (!empty($order)) {
-                        $orderDetails = App\Models\OrderDetail::where('order_id', $order->id)->count();
+                        $order = App\Models\Order::where('status', 1)->where('customer_name', Auth::user()->name)->count('customer_name');
                     }
                 @endphp
-                @if (!empty($orderDetails))
+                @if (!empty($order))
                     <a href="{{ route('history') }}" class="text-lg hover:rounded-lg {{ Route::is('/') ? 'font-bold text-primary' : '' }} relative"><svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="icon icon-tabler icon-tabler-shopping-cart mr-6 text-primary" width="28"
@@ -95,7 +90,7 @@
                         </svg>
                         <div
                             class="badge badge-sm border-none text-white py-2.5  bg-secondary border border-secondary shadow-lg absolute top-0 right-4 text-xs">
-                            {{ $orderDetails }}</div>
+                            {{ $order }}</div>
                     </a>
                 @endif
                 <div class="dropdown dropdown-end">

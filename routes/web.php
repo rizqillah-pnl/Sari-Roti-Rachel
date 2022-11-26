@@ -67,6 +67,7 @@ Route::post('/admin/checkout', [AdminOrderController::class, 'checkout'])->name(
 
 // Admin Histories
 Route::get('/admin/history', [AdminOrderController::class, 'index'])->name('admin.history');
+Route::get('/admin/history/{order}', [AdminOrderController::class, 'show'])->name('admin.history.show');
 
 // Admin Customers
 Route::get('/admin/pengguna', [AdminUserController::class, 'index'])->name('admin.pengguna');

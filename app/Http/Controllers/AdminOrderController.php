@@ -124,7 +124,11 @@ class AdminOrderController extends Controller
 
     public function show(Order $order)
     {
-        //
+        $orderDetails = OrderDetail::where('order_id', $order->id)->get();
+
+        return view('admin.histories.show', [
+            "order_details" => $orderDetails
+        ]);
     }
 
     /**

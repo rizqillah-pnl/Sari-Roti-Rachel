@@ -96,12 +96,18 @@
                                         </form>
                                     </td>
                                 </tr>
+                            @empty
                                 <tr>
+                                    <td colspan="5">Belum ada pelanggan</td>
+                                    <td></td>
+                                </tr>
+                            @endforelse
+                             <tr>
                                     <td align="right" colspan="4">Total Harga : </td>
                                     <td align="right">Rp. {{ number_format($order->total_order_price) }}</td>
                                     <td></td>
                                 </tr>
-                                <form action="{{ route('admin.checkout') }}" method="post">
+                             <form action="{{ route('admin.checkout') }}" method="post">
                                 @csrf
                                 <tr>
                                     <td colspan="4" align="right">Nama Pelanggan : </td>
@@ -125,12 +131,6 @@
                                     <td></td>
                                 </tr>
                                 </form>
-                            @empty
-                                <tr>
-                                    <td colspan="5">Belum ada pelanggan</td>
-                                    <td></td>
-                                </tr>
-                            @endforelse
                         </tbody>
                     </table>
                 </div>

@@ -13,11 +13,11 @@ class AdminCartController extends Controller
     public function index()
     {
         $order = Order::where('user_id', Auth::user()->id)->where('status', 0)->first();
+        // dd($order);
         $user = User::get();
 
         if (!empty($order)) {
-            $order_details = OrderDetail::where('id', $order->id)->get();
-
+            $order_details = OrderDetail::where('order_id', $order->id)->get();
             return view('admin.carts.index', [
                 "order" => $order,
                 "order_details" => $order_details,

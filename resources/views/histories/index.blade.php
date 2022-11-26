@@ -51,14 +51,23 @@
         {{-- daftar --}}
         <section id="daftar" class="pt-4">
             <x-container>
+                @php
+                    $order = App\Models\Order::where('status', 1)
+                        ->where('customer_name', Auth::user()->name)
+                        ->sum('total_order_price');
+                @endphp
                 <div class="w-full flex justify-between px-4 mb-8">
                     <div>
                         <p>Level</p>
-                        <div class="badge bg-greesn-500">Panda</div>
+                        @if ($order > 100000 && $order < 200000)
+                            <div class="badge bg-amber-900">Nanas</div>
+                        @elseif ($order > 200000)
+                            <div class="badge bg-yellow-500">Cokelat</div>
+                        @else
+                            <div class="badge bg-grees-500">Pandan</div>
+                        @endif
                     </div>
-                    @php
-                        $order = App\Models\Order::where('status', 1)->where('customer_name', Auth::user()->name)->sum('total_order_price');
-                    @endphp
+
                     <div>
                         <h4>Total Pemesanan</h4>
                         <p class="font-semibold text-right">Rp. {{ $order }}</p>
@@ -70,26 +79,29 @@
                             @forelse ($orders as $order)
                                 <div class="flex justify-between mb-4 bg-white shadow-md p-4">
                                     <li class="bg-white">
-                                        <label for="harga" class="block mb-2 text-dark text-sm">Tanggal Pesanan</label>
+                                        <label for="harga" class="block mb-2 text-dark text-sm">Tanggal
+                                            Pesanan</label>
                                         <span class="text-dark font-medium"> {{ $order->order_date }}</span>
                                     </li>
                                     <li class="bg-white">
                                         <label for="harga" class="block mb-2 text-dark text-sm">Harga</label>
-                                        <span class="text-dark font-medium"> Rp.{{ number_format($order->total_order_price) }}</span>
+                                        <span class="text-dark font-medium">
+                                            Rp.{{ number_format($order->total_order_price) }}</span>
                                     </li>
                                     <li class="bg-white flex justify-center items-center">
-                                            <a href="" class=" text-white px-2 py-2 bg-green-500 rounded-md"><svg xmlns="http://www.w3.org/2000/svg"
-                                                    class="icon icon-tabler icon-tabler-eye-check" width="24"
-                                                    height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                    stroke="currentColor" fill="none" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                    <circle cx="12" cy="12" r="2"></circle>
-                                                    <path
-                                                        d="M12 19c-4 0 -7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7c-.42 .736 -.858 1.414 -1.311 2.033">
-                                                    </path>
-                                                    <path d="M15 19l2 2l4 -4"></path>
-                                                </svg></a>
+                                        <a href="" class=" text-white px-2 py-2 bg-green-500 rounded-md"><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-eye-check" width="24"
+                                                height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                stroke="currentColor" fill="none" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <circle cx="12" cy="12" r="2"></circle>
+                                                <path
+                                                    d="M12 19c-4 0 -7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7c-.42 .736 -.858 1.414 -1.311 2.033">
+                                                </path>
+                                                <path d="M15 19l2 2l4 -4"></path>
+                                            </svg></a>
                                     </li>
                                 </div>
                             @empty
