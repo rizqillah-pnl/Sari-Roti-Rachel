@@ -21,16 +21,21 @@ class LoginWithGoogleController extends Controller
             $findUser = User::where('google_id', $user->id)->first();
             if ($findUser) {
                 Auth::login($findUser);
-                return redirect()->intended('dashboard');
+                if ($findUser == 1) {
+                    return redirect()->intended('dashboard');
+                }else{
+                    return redirect()->intended('/');
+                }
             } else {
                 $newUser = User::create([
                     "name" => $user->getName(),
                     "email" => $user->getEmail(),
                     "google_id" => $user->getId(),
-                    "password" => encrypt('rachelginting'),
+                    "level" => 2,
+                    "password" => encrypt('customer0002'),
                 ]);
                 Auth::login($newUser);
-                return redirect()->intended('dashboard');
+                return redirect()->intended('/');
             }
         } catch (Exception $e) {
             $e->getMessage();
