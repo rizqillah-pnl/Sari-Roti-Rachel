@@ -51,18 +51,24 @@
         {{-- daftar --}}
         <section id="daftar" class="pt-4">
             <x-container>
+                <div class="w-full flex ">
+                    <div>
+                        <p>Level</p>
+                        <div class="badge bg-greesn-500">Panda</div>
+                    </div>
+                </div>
                 <div class="flex flex-wrap">
                     <div class="w-full px-4 rounded-md">
-                        <ul class="bg-white shadow-md p-2 rounded-md">
+                        <ul class="bg-white shadow-md p-3 rounded-md">
                             @forelse ($orders as $order)
                                 <div class="flex justify-between">
                                     <li class="bg-white">
-                                        <label for="harga" class="block text-dark text-sm">Tanggal Pesanan</label>
-                                        <strong> {{ $order->order_date }}</strong>
+                                        <label for="harga" class="block mb-2 text-dark text-sm">Tanggal Pesanan</label>
+                                        <span class="text-dark font-medium"> {{ $order->order_date }}</span>
                                     </li>
                                     <li class="bg-white">
-                                        <label for="harga" class="block text-dark text-sm">Harga</label>
-                                        <strong> Rp.{{ number_format($order->total_order_price) }}</strong>
+                                        <label for="harga" class="block mb-2 text-dark text-sm">Harga</label>
+                                        <span class="text-dark font-medium"> Rp.{{ number_format($order->total_order_price) }}</span>
                                     </li>
                                     <li class="bg-white flex justify-center items-center">
                                             <a href="" class=" text-white px-2 py-2 bg-green-500 rounded-md"><svg xmlns="http://www.w3.org/2000/svg"

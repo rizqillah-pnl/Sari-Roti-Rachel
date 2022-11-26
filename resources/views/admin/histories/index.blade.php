@@ -69,7 +69,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $order->user->name }}</td>
-                                        <td>{{ $users->customer_name }}</td>
+                                        <td>{{ $order->customer_name }}</td>
                                     <td>{{ $order->order_date }}</td>
                                     <td>
                                         @if ($order->status == 1)

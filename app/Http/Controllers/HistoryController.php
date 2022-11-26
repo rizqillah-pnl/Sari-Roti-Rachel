@@ -10,17 +10,12 @@ class HistoryController extends Controller
 {
     public function index()
     {
-        $order = Order::where('user_id', Auth::user()->id)->where('status', 1)->get();
+        $order = Order::where('customer_name', Auth::user()->name)->where('status', 1)->get();
         // dd($order);
-
-        foreach ($order as $ord) {
-            $user = Order::where('customer_name', $ord->customer_name)->first();
-        }
 
         if (!empty($order)) {
             return view('histories.index', [
                 "orders" => $order,
-                "users" => $user
             ]);
         } else {
         }

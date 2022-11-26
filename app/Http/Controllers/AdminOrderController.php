@@ -22,14 +22,9 @@ class AdminOrderController extends Controller
         $order = Order::where('user_id', Auth::user()->id)->where('status', 1)->get();
         // dd($order);
 
-        foreach ($order as $ord) {
-            $user = Order::where('customer_name', $ord->customer_name)->first() ;
-        }
-
         if (!empty($order)) {
             return view('admin.histories.index', [
                 "orders" => $order,
-                "users" => $user
             ]);
         } else {
         }
@@ -117,7 +112,7 @@ class AdminOrderController extends Controller
         $detailOrders = OrderDetail::where('order_id', $order->id)->get();
         foreach ($detailOrders as $detailOrder) {
             $product = Product::where('id', $detailOrder->product_id)->first();
-            $dataProduct['order_quantity'] = $product->stok - $detailOrder->order_quantity;
+            $dataProduct['stok'] = $product->stok - $detailOrder->order_quantity;
             Product::where('id', $product->id)->update($dataProduct);
         }
 
