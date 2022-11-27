@@ -12,9 +12,14 @@ class AdminCustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = User::all();
+        if(isset($request)) {
+            $user = User::where('name', 'LIKE', '%' . $request->search . '%')->paginate(8);
+        }else{
+            $user = User::paginate(8);
+        }
+
         return view('admin.customers.index', [
             "users" => $user
         ]);

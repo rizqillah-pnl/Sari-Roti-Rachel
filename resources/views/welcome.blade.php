@@ -12,7 +12,7 @@
                             libero minima quas eos laboriosam, eveniet incidunt cum soluta! Earum quis neque magni
                             laborum temporibus fugit nostrum ratione odit nulla voluptatum.</p>
                         <div class="mt-12">
-                            <a href="" class="px-7 text-lg py-3 bg-primary rounded-md text-white mr-4">Belanja</a>
+                            <a href="{{ route('produk') }}" class="px-7 text-lg py-3 bg-primary rounded-md text-white mr-4">Belanja</a>
                             <a href="" class="px-7 text-lg py-3 bg-secondary rounded-md text-white">Tentang</a>
                         </div>
                     </div>

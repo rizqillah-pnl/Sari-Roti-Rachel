@@ -21,11 +21,7 @@ class LoginWithGoogleController extends Controller
             $findUser = User::where('google_id', $user->id)->first();
             if ($findUser) {
                 Auth::login($findUser);
-                if ($findUser == 1) {
                     return redirect()->intended('dashboard');
-                }else{
-                    return redirect()->intended('/');
-                }
             } else {
                 $newUser = User::create([
                     "name" => $user->getName(),
@@ -35,7 +31,7 @@ class LoginWithGoogleController extends Controller
                     "password" => encrypt('customer0002'),
                 ]);
                 Auth::login($newUser);
-                return redirect()->intended('/');
+                    return redirect()->intended('dashboard');
             }
         } catch (Exception $e) {
             $e->getMessage();

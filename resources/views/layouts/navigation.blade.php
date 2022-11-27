@@ -75,9 +75,8 @@
                     <ul tabindex="0"
                         class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li>
-                            <a class="justify-between" href="{{ route('profile.edit', 1) }}">
+                            <a class="justify-between" href="{{ route('profile.show', Auth::user()->id ) }}">
                                 Profile
-                                <span class="badge">New</span>
                             </a>
                         </li>
                         <li><a>Settings</a></li>

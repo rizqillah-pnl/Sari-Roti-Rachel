@@ -62,25 +62,28 @@ Route::delete('/admin/orders/{order}', [AdminOrderController::class, 'destroy'])
 // Admin Cart
 Route::get('/admin/cart', [AdminCartController::class,'index'])->name('admin.cart');
 
-// Checkout
+// Admin Checkout
 Route::post('/admin/checkout', [AdminOrderController::class, 'checkout'])->name('admin.checkout');
 
 // Admin Histories
 Route::get('/admin/history', [AdminOrderController::class, 'index'])->name('admin.history');
 Route::get('/admin/history/{order}', [AdminOrderController::class, 'show'])->name('admin.history.show');
 
-// Admin Customers
-Route::get('/admin/pengguna', [AdminUserController::class, 'index'])->name('admin.pengguna');
-Route::delete('/admin/customers/{id}', [AdminUserController::class, 'destor'])->name('admin.customers.destroy');
+// Admin User
+Route::get('/admin/user/', [AdminUserController::class, 'index'])->name('admin.user');
 
 // Admin Report
 Route::get('/admin/report', [ReportController::class, 'index'])->name('admin.report');
 
 // Admin Customer
-Route::get('/admin/pelanggan', [AdminCustomerController::class, 'index'])->name('admin.customer');
+Route::get('/admin/customers', [AdminCustomerController::class, 'index'])->name('admin.customers');
+Route::delete('/admin/customers/{id}', [AdminUserController::class, 'destroy'])->name('admin.customers.destroy');
 
 // Customer History
 Route::get('history', [HistoryController::class, 'index'])->name('history');
 Route::get('history/{order}', [OrderController::class, 'show'])->name('history.show');
+
+// Profile
+ROute::get('profile/{user}', [ProfileController::class, 'show'])->name('profile');
 
 require __DIR__.'/auth.php';

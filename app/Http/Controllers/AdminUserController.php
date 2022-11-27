@@ -20,7 +20,6 @@ class AdminUserController extends Controller
             $user = User::paginate(8)->get();
         }
 
-
         return view('admin.users.index', [
             "users" => $user
         ]);

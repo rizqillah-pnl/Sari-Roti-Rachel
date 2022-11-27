@@ -13,9 +13,9 @@
 
                 <div class="w-1/2 px-4">
                     <div class="form-control">
-                        <form action="{{ route('admin.pengguna') }}" method="get" class="input-group">
+                        <form action="{{ route('admin.customers') }}" method="get" class="input-group">
                         @csrf
-                            <input type="text" placeholder="Search…" class="input input-bordered w-full" name="search" placeholder="Cari pengguna.." />
+                            <input type="text" placeholder="Cari pengguna.." class="w-full border-0 rounded-l-md hover:border hover:border-slate-100" name="search" />
                             <button type="submit" class="btn px-6 bg-secondary border-none hover:bg-primary">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
