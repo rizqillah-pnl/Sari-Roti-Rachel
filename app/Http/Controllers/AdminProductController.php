@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 
 class AdminProductController extends Controller
@@ -15,9 +16,9 @@ class AdminProductController extends Controller
      */
     public function index(Request $request)
     {
-        if(isset($request)) {
-            $product = Product::where('name', 'LIKE', '%' . $request->search . '%' )->paginate(8);
-        }else {
+        if (isset($request)) {
+            $product = Product::where('name', 'LIKE', '%' . $request->search . '%')->paginate(8);
+        } else {
             $product = Product::paginate(8);
         }
 
@@ -26,8 +27,8 @@ class AdminProductController extends Controller
         ]);
     }
 
-    public function list(){
-
+    public function list()
+    {
     }
 
     /**
@@ -56,15 +57,15 @@ class AdminProductController extends Controller
             "description" => "required|min:5"
         ]);
 
-    if($request->file('image')) {
-        $image =date('dmy').$request->file('image')->getClientOriginalName();
-        $validateData['image'] = $request->file('image')->storeAs('products', $image);
-    }
+        if ($request->file('image')) {
+            $image = date('dmy') . $request->file('image')->getClientOriginalName();
+            $validateData['image'] = $request->file('image')->storeAs('products', $image);
+        }
 
 
-    Product::create($validateData);
+        Product::create($validateData);
 
-    FacadesAlert::success('Berhasil', "Produk berhasil ditambahkan!");
+        FacadesAlert::success('Berhasil', "Produk berhasil ditambahkan!");
         return redirect()->route('admin.products');
     }
     /**
@@ -75,7 +76,6 @@ class AdminProductController extends Controller
      */
     public function show(Product $product)
     {
-
     }
 
     /**
@@ -84,9 +84,11 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        return view('admin.products.edit', [
+            "product" => $product
+        ]);
     }
 
     /**
@@ -96,9 +98,31 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $validateData = $request->validate([
+            "name" => "required",
+            "image" => "file|image|required",
+            "price" => "required|numeric",
+            "stok" => "required|numeric",
+            "description" => "required|min:5"
+        ]);
+
+        $oldImage = Product::where('id', $product->id);
+
+        if ($request->file('image')) {
+            if ($oldImage->file) {
+                Storage::delete($oldImage->file);
+            }
+            $image = date('dmy') . $request->file('image')->getClientOriginalName();
+            $validateData['image'] = $request->file('image')->storeAs('products', $image);
+        }
+
+
+        Product::create($validateData);
+
+        FacadesAlert::success('Berhasil', "Produk berhasil ditambahkan!");
+        return redirect()->route('admin.products');
     }
 
     /**

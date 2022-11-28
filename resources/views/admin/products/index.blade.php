@@ -59,7 +59,7 @@
                                     <td>Rp. {{ $product->price }}</td>
                                     <td>{{ $product->stok }}</td>
                                     <td>
-                                        <a href="" class="btn btn-sm btn-warning text-white"><svg
+                                        <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-warning text-white"><svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 class="icon icon-tabler icon-tabler-edit-circle" width="22"
                                                 height="22" viewBox="0 0 24 24" stroke-width="2"
@@ -104,6 +104,8 @@
                             @endforelse
                         </tbody>
                     </table>
+
+                    {{ $products->links() }}
                 </div>
             </div>
         </x-container>

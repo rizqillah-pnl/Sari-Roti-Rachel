@@ -65,6 +65,8 @@ Route::get('auth/googlelogin/callback', [LoginWithGoogleController::class, 'hand
 Route::get('admin/product', [AdminProductController::class, 'index'])->name('admin.products');
 Route::get('admin/product/create', [AdminProductController::class, 'create'])->name('admin.products.create');
 Route::post('admin/product/store', [AdminProductController::class, 'store'])->name('admin.products.store');
+Route::get('admin/product/{product}/edit', [AdminProductController::class, 'edit'])->name('admin.products.edit');
+Route::put('admin/product/{product}', [AdminProductController::class, 'update'])->name('admin.products.update');
 Route::delete('admin/product/{product}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
 
 // Admin Order
