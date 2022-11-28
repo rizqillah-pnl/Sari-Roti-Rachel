@@ -16,11 +16,11 @@
                     <li><a
                             class="text-lg hover:rounded-lg {{ Route::is('product') ? 'font-bold text-primary' : '' }}">Produk</a>
                     </li>
-                    <li><a
-                            class="text-lg hover:rounded-lg {{ Route::is('/') ? 'font-bold text-primary' : '' }}">Tentang</a>
+                    <li><a href="#tentang"
+                            class="text-lg hover:rounded-lg">Tentang</a>
                     </li>
-                    <li><a
-                            class="text-lg hover:rounded-lg {{ Route::is('/') ? 'font-bold text-primary' : '' }}">Kontak</a>
+                    <li><a href="#kontak"
+                            class="text-lg hover:rounded-lg">Kontak</a>
                     </li>
                 </ul>
             </div>
@@ -33,11 +33,11 @@
                 <li><a
                         class="text-lg hover:rounded-lg {{ Route::is('produk') ? 'font-bold text-primary' : '' }}">Produk</a>
                 </li>
-                <li><a
+                <li><a href="#tentang"
                         class="text-lg hover:rounded-lg {{ Route::is('produk') ? 'font-bold text-primary' : '' }}">Tentang</a>
                 </li>
-                <li><a
-                        class="text-lg hover:rounded-lg {{ Route::is('produk') ? 'font-bold text-primary' : '' }}">Kontak</a>
+                <li><a href="#kontak"
+                        class="text-lg hover:rounded-lg">Kontak</a>
                 </li>
             </ul>
         </div>
@@ -76,10 +76,10 @@
                         class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li>
                             <a class="justify-between" href="{{ route('profile.show', Auth::user()->id ) }}">
-                                Profile
+                                Profil
                             </a>
                         </li>
-                        <li><a>Settings</a></li>
+                        <li><a>Pengaturan</a></li>
                         @if (Auth::user()->level == 1)
                             <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                         @endif
@@ -92,7 +92,7 @@
                     </ul>
                 </div>
             @else
-                <a class="text-lg hover:rounded-lg {{ Route::is('/') ? 'font-bold text-primary' : '' }}"
+                <a class="text-lg hover:rounded-lg"
                     href="{{ route('login') }}"><span class="hidden md:block">Daftar/Masuk</span><svg
                         xmlns="http://www.w3.org/2000/svg"
                         class="icon icon-tabler icon-tabler-login block md:hidden text-primary" width="28"

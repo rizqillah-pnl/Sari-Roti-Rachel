@@ -18,15 +18,15 @@ class AdminOrderController extends Controller
      */
     public function index()
     {
-        $order = Order::where('user_id', Auth::user()->id)->where('status', 1)->get();
-        // dd($order);
-
-        if (!empty($order)) {
-            return view('admin.histories.index', [
-                "orders" => $order,
-            ]);
-        } else {
+if(isset($request)) {
+            $product = Product::where('name', 'LIKE', '%' . $request->search . '%' )->paginate(8);
+        }else {
+            $product = Product::paginate(8);
         }
+
+        return view('admin.products.list', [
+            "products" => $product
+        ]);
     }
 
     /**
@@ -121,12 +121,12 @@ class AdminOrderController extends Controller
     }
 
 
-    public function show(Order $order)
+    public function show(Product $product)
     {
-        $orderDetails = OrderDetail::where('order_id', $order->id)->get();
+        $produk = Product::where('id', $product->id)->first();
 
-        return view('admin.histories.show', [
-            "order_details" => $orderDetails
+        return view('admin.products.show', [
+            "product" => $produk
         ]);
     }
 

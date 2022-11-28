@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AdminCartController;
 use App\Http\Controllers\AdminCustomerController;
+use App\Http\Controllers\AdminHistoryController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\AdminReportController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\LoginWithGoogleController;
@@ -27,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome',[
-        "products" => Product::all()
+        "product" => Product::all()
     ]);
 })->name('/');
 
@@ -44,20 +46,36 @@ Route::middleware('auth')->group(function () {
 
 // Produk
 Route::get('/produk', [ProductController::class, 'index'])->name('produk');
-Route::get('/products/{id}', [ProductController::class, 'show'])->name('produk.show');
+Route::get('/product/{id}', [ProductController::class, 'show'])->name('produk.show');
 Route::get('/sunday', [ProductController::class, 'sunday'])->name('sunday');
+
+
+// History
+Route::get('history', [HistoryController::class, 'index'])->name('history');
+Route::get('history/{order}', [OrderController::class, 'show'])->name('history.show');
+
+// Profile
+ROute::get('profile/{user}', [ProfileController::class, 'show'])->name('profile');
 
 // Login With Google
 Route::get('auth/googlelogin', [LoginWithGoogleController::class, 'redirectToGoogle'])->name('redirecttogoogle');
 Route::get('auth/googlelogin/callback', [LoginWithGoogleController::class, 'handleGoogleCallback'])->name('handlegooglecallback');
 
 // Admin Product
-Route::get('/admin/products', [AdminProductController::class, 'index'])->name('admin.produk');
-Route::get('/admin/products/{id}', [AdminProductController::class, 'show'])->name('admin.product.show');
+Route::get('admin/product', [AdminProductController::class, 'index'])->name('admin.products');
+Route::get('admin/product/create', [AdminProductController::class, 'create'])->name('admin.products.create');
+Route::post('admin/product/store', [AdminProductController::class, 'store'])->name('admin.products.store');
+Route::delete('admin/product/{product}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
 
 // Admin Order
-Route::post('/admin/orders/{product}', [AdminOrderController::class, 'store'])->name('admin.orders.store');
-Route::delete('/admin/orders/{order}', [AdminOrderController::class, 'destroy'])->name('admin.orders.destroy');
+Route::post('/admin/order/{product}', [AdminOrderController::class, 'store'])->name('admin.orders.store');
+Route::get('admin/order/{product}', [AdminOrderController::class, 'show'])->name('admin.products.show');
+Route::get('/admin/order/', [AdminOrderController::class, 'index'])->name('admin.orders');
+Route::delete('/admin/order/{order}', [AdminOrderController::class, 'destroy'])->name('admin.orders.destroy');
+
+// Admin Historu
+Route::get('admin/history', [AdminHistoryController::class, 'index'])->name('admin.history');
+Route::get('/admin/history/{orderdetail}', [AdminHistoryController::class, 'show'])->name('admin.history.show');
 
 // Admin Cart
 Route::get('/admin/cart', [AdminCartController::class,'index'])->name('admin.cart');
@@ -65,25 +83,15 @@ Route::get('/admin/cart', [AdminCartController::class,'index'])->name('admin.car
 // Admin Checkout
 Route::post('/admin/checkout', [AdminOrderController::class, 'checkout'])->name('admin.checkout');
 
-// Admin Histories
-Route::get('/admin/history', [AdminOrderController::class, 'index'])->name('admin.history');
-Route::get('/admin/history/{order}', [AdminOrderController::class, 'show'])->name('admin.history.show');
-
 // Admin User
 Route::get('/admin/user/', [AdminUserController::class, 'index'])->name('admin.user');
 
 // Admin Report
-Route::get('/admin/report', [ReportController::class, 'index'])->name('admin.report');
+Route::get('/admin/report', [AdminReportController::class, 'index'])->name('admin.report');
 
 // Admin Customer
 Route::get('/admin/customers', [AdminCustomerController::class, 'index'])->name('admin.customers');
 Route::delete('/admin/customers/{id}', [AdminUserController::class, 'destroy'])->name('admin.customers.destroy');
 
-// Customer History
-Route::get('history', [HistoryController::class, 'index'])->name('history');
-Route::get('history/{order}', [OrderController::class, 'show'])->name('history.show');
-
-// Profile
-ROute::get('profile/{user}', [ProfileController::class, 'show'])->name('profile');
 
 require __DIR__.'/auth.php';

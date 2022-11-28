@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 
 class AdminProductController extends Controller
 {
@@ -25,6 +26,10 @@ class AdminProductController extends Controller
         ]);
     }
 
+    public function list(){
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -32,7 +37,7 @@ class AdminProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.products.create');
     }
 
     /**
@@ -43,22 +48,34 @@ class AdminProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            "name" => "required",
+            "image" => "file|image|required",
+            "price" => "required|numeric",
+            "stok" => "required|numeric",
+            "description" => "required|min:5"
+        ]);
+
+    if($request->file('image')) {
+        $image =date('dmy').$request->file('image')->getClientOriginalName();
+        $validateData['image'] = $request->file('image')->storeAs('products', $image);
     }
 
+
+    Product::create($validateData);
+
+    FacadesAlert::success('Berhasil', "Produk berhasil ditambahkan!");
+        return redirect()->route('admin.products');
+    }
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        $produk = Product::where('id', $id)->first();
 
-        return view('admin.products.show', [
-            "product" => $produk
-        ]);
     }
 
     /**
@@ -90,8 +107,11 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        Product::destroy('id', $product->id);
+
+        FacadesAlert::success('Berhasil', "Produk Berhasil Dihapus");
+        return redirect()->route('admin.product');
     }
 }

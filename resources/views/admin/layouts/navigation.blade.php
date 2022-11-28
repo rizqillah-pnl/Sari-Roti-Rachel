@@ -13,8 +13,8 @@
                     class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                     <li><a class="text-lg hover:rounded-lg {{ Route::is('dashboard') ? 'font-bold text-primary' : '' }}"
                             href="{{ route('dashboard') }}">Beranda</a></li>
-                    <li><a href="{{ route('admin.produk') }}"
-                            class="text-lg hover:rounded-lg {{ Route::is('admin.produk') ? 'font-bold text-primary' : '' }}">Produk</a>
+                    <li><a href="{{ route('admin.products') }}"
+                            class="text-lg hover:rounded-lg {{ Route::is('admin.products') ? 'font-bold text-primary' : '' }}">Produk</a>
                     </li>
                     <li><a href="{{ route('admin.customers') }}"
                             class="text-lg hover:rounded-lg {{ Route::is('admin.customers') ? 'font-bold text-primary' : '' }}">Pelanggan</a>
@@ -32,6 +32,7 @@
                         </a>
                         <ul class="p-2">
                             <li><a href="{{ route('admin.user') }}" class="text-lg hover:rounded-lg {{ Route::is('admin.user') ? 'font-bold text-primary' : '' }}">Pengguna</a></li>
+                            <li><a href="{{ route('admin.products') }}" class="text-lg hover:rounded-lg {{ Route::is('admin.products') ? 'font-bold text-primary' : '' }}">Produk</a></li>
                             <li><a class="text-lg hover:rounded-lg">Instansi</a></li>
                         </ul>
                     </li>
@@ -44,7 +45,7 @@
                 <li><a class="text-lg hover:rounded-lg {{ Route::is('dashboard') ? 'font-bold text-primary' : '' }} {{ Route::is('/') ? 'font-bold text-primary' : '' }}"
                         href="{{ route('dashboard') }}">Beranda</a></li>
                 <li><a class="text-lg hover:rounded-lg {{ Route::is('admin.produk') ? 'font-bold text-primary' : '' }}"
-                        href="{{ route('admin.produk') }}">Produk</a>
+                        href="{{ route('admin.orders') }}">Produk</a>
                 </li>
                 <li><a class="text-lg hover:rounded-lg {{ Route::is('admin.report') ? 'font-bold text-primary' : '' }}"
                         href="{{ route('admin.report') }}">Laporan</a>
@@ -62,6 +63,7 @@
                     </a>
                     <ul class="p-2 bg-white z-50">
                         <li><a href="{{ route('admin.user') }}" class="text-lg hover:rounded-lg {{ Route::is('admin.user') ? 'font-bold text-primary' : '' }}">Pengguna</a></li>
+                        <li><a href="{{ route('admin.products') }}" class="text-lg hover:rounded-lg">Produk</a></li>
                         <li><a class="text-lg hover:rounded-lg">Instansi</a></li>
                     </ul>
                 </li>

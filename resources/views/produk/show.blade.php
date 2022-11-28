@@ -1,6 +1,6 @@
 <x-guest-layout>
     {{-- semua produk --}}
-    <section id="semua-produk">
+    {{-- <section id="semua-produk">
         <x-container>
             <h2 class="text-3xl pt-20 pb-10 px-4 text-primary"><strong>Rincian Produk</strong></h2>
             <div class="w-full px-4">
@@ -26,6 +26,6 @@
             </div>
               </div>
         </x-container>
-    </section>
+    </section> --}}
     {{-- akhir semua produk --}}
 </x-guest-layout>

@@ -18,12 +18,16 @@ class AdminCartController extends Controller
 
         if (!empty($order)) {
             $order_details = OrderDetail::where('order_id', $order->id)->get();
+
             return view('admin.carts.index', [
                 "order" => $order,
                 "order_details" => $order_details,
                 "users" => $user
             ]);
-        } else {
+        }else {
+            return view('admin.carts.index', [
+                "order" => $order,
+            ]);
         }
     }
 }

@@ -8,7 +8,7 @@
                     <div class="text-sm breadcrumbs">
                         <ul>
                             <li><a href="{{ route('dashboard') }}">Beranda</a></li>
-                            <li class="font-semibold">Checkout</li>
+                            <li class="font-semibold">Riwayat Pemesanan</li>
                         </ul>
                     </div>
                 </div>
