@@ -102,24 +102,24 @@ class AdminProductController extends Controller
     {
         $validateData = $request->validate([
             "name" => "required",
-            "image" => "file|image|required",
+            "image" => "image|required",
             "price" => "required|numeric",
             "stok" => "required|numeric",
             "description" => "required|min:5"
         ]);
 
-        $oldImage = Product::where('id', $product->id);
+        $oldImage = Product::where('id', $product->id)->first();
 
         if ($request->file('image')) {
-            if ($oldImage->file) {
-                Storage::delete($oldImage->file);
+            if ($oldImage->image) {
+                Storage::delete($oldImage->image);
             }
             $image = date('dmy') . $request->file('image')->getClientOriginalName();
             $validateData['image'] = $request->file('image')->storeAs('products', $image);
         }
 
 
-        Product::create($validateData);
+        Product::where('id', $product->id)->update($validateData);
 
         FacadesAlert::success('Berhasil', "Produk berhasil ditambahkan!");
         return redirect()->route('admin.products');

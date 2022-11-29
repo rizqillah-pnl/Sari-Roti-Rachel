@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome',[
-        "product" => Product::all()
+        "products" => Product::all()
     ]);
 })->name('/');
 
