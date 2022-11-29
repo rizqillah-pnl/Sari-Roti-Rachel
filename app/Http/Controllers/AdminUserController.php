@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 
 class AdminUserController extends Controller
 {
@@ -16,7 +18,7 @@ class AdminUserController extends Controller
     {
         if (isset($request)) {
             $user = User::where('name', 'LIKE', '%' . $request->search . '%')->paginate(8);
-        }else{
+        } else {
             $user = User::paginate(8)->get();
         }
 
@@ -32,7 +34,7 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
@@ -43,7 +45,27 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            "name" => "required",
+            "image" => "file|image|required",
+            "email" => "required|email|unique:users",
+            "address" => "required|min:5",
+            "phone" => "required|numeric",
+        ]);
+
+        $validateData['level'] = 1;
+        $validateData['password'] = Hash::make('sariroti');
+
+        if ($request->file('image')) {
+            $image = date('dmy') . $request->file('image')->getClientOriginalName();
+            $validateData['image'] = $request->file('image')->storeAs('users', $image);
+        }
+
+
+        User::create($validateData);
+
+        FacadesAlert::success('Berhasil', "User berhasil ditambahkan!");
+        return redirect()->route('admin.user');
     }
 
     /**

@@ -75,7 +75,7 @@ Route::get('admin/order/{product}', [AdminOrderController::class, 'show'])->name
 Route::get('/admin/order/', [AdminOrderController::class, 'index'])->name('admin.orders');
 Route::delete('/admin/order/{order}', [AdminOrderController::class, 'destroy'])->name('admin.orders.destroy');
 
-// Admin Historu
+// Admin History
 Route::get('admin/history', [AdminHistoryController::class, 'index'])->name('admin.history');
 Route::get('/admin/history/{orderdetail}', [AdminHistoryController::class, 'show'])->name('admin.history.show');
 
@@ -87,6 +87,8 @@ Route::post('/admin/checkout', [AdminOrderController::class, 'checkout'])->name(
 
 // Admin User
 Route::get('/admin/user/', [AdminUserController::class, 'index'])->name('admin.user');
+Route::get('admin/user/create', [AdminUserController::class, 'create'])->name('admin.user.create');
+Route::post('admin/user/store', [AdminUserController::class, 'store'])->name('admin.user.store');
 
 // Admin Report
 Route::get('/admin/report', [AdminReportController::class, 'index'])->name('admin.report');

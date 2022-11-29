@@ -4,28 +4,13 @@
         <x-container>
             <div class="flex flex-wrap justify-between items-center">
                 <div class="w-1/2 px-4">
-                    <div class="w-full flex justify-between">
+                    <div class="w-full">
                         <div>
                             <h2 class="text-3xl text-primary"><strong>Pengguna</strong></h2>
                         </div>
                     </div>
                 </div>
 
-                <div class="w-1/2 px-4">
-                    <div class="form-control">
-                        <form action="{{ route('admin.customers') }}" method="get" class="input-group">
-                        @csrf
-                            <input type="text" placeholder="Cari pengguna.." class="w-full border-0 rounded-l-md hover:border hover:border-slate-100" name="search" />
-                            <button type="submit" class="btn px-6 bg-secondary border-none hover:bg-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                </svg>
-                            </button>
-                        </form>
-                    </div>
-                </div>
             </div>
         </x-container>
     </section>
@@ -36,6 +21,29 @@
         <x-container>
             <div class="flex flex-wrap">
                 <div class="w-full px-4">
+                    <div class="flex justify-between">
+                        <a href="{{ route('admin.user.create') }}" class="btn btn-success text-white mb-3">Tambah
+                            Pengguna</a>
+                        <div class="w-full md:w-1/2 px-4">
+                            <div class="form-control">
+                                <form action="{{ route('admin.products') }}" method="get">
+                                    @csrf
+                                    <div class="input-group">
+                                        <input type="text" placeholder="Search…" name="search"
+                                            class="input input-bordered w-full" value="{{ request('search') }}" />
+                                        <button type="text"
+                                            class="btn px-6 bg-secondary border-none hover:bg-primary">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <table class="table w-full">
                         <thead>
                             <tr>
@@ -58,8 +66,7 @@
                                         @if (Auth::user()->id === 1)
                                             <span class="px-3 py-2.5 text-white bg-green-500 rounded-md">Admin</span>
                                         @elseif(Auth::user()->id === 2)
-                                            <span
-                                                class="px-3 py-2.5 text-white bg-sky-500 rounded-md">Pelanggan</span>
+                                            <span class="px-3 py-2.5 text-white bg-sky-500 rounded-md">Pelanggan</span>
                                         @endif
                                     <td>
                                         <a href="" class="btn btn-sm btn-warning text-white"><svg

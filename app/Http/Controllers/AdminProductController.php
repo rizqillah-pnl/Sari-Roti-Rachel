@@ -121,7 +121,7 @@ class AdminProductController extends Controller
 
         Product::where('id', $product->id)->update($validateData);
 
-        FacadesAlert::success('Berhasil', "Produk berhasil ditambahkan!");
+        FacadesAlert::success('Berhasil', "Produk berhasil diubah!");
         return redirect()->route('admin.products');
     }
 
