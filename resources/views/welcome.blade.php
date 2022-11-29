@@ -181,7 +181,7 @@
         <x-container>
             <div class="flex flex-wrap items-center justify-center">
                 <div class="w-full mb-4 md:w-1/4 px-4">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png"
+                    <img src="{{ asset('storage/' . $product->image) }}"
                         alt="" class="w-24 shadow-md mb-4 mx-auto">
                 </div>
                 <div class="w-full mb-4 md:w-1/4 px-4">

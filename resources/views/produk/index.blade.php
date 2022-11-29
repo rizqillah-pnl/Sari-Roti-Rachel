@@ -9,7 +9,7 @@
                         <div class="bg-white w-full rounded-md shadow-md mb-4">
                             <div class="relative">
                                 <span class="absolute p-2 opacity-80 text-white bg-secondary rounded-br-md">{{ $product->stok }}</span>
-                                <img src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//95/MTA-13708732/sari-roti_sari-roti-sobek-coklat-keju-216-gr_full01.jpg"
+                                <img src="{{ asset('storage/' . $product->image) }}"
                                     alt="" class="w-32 h-32 md:w-48 md:h-48 mx-auto">
                             </div>
                             <div class="pt-5 pb-10 text-center">
