@@ -1,3 +1,4 @@
+<div class="bg-white shadow-md w-full">
 <x-container>
     <div class="navbar z-50">
         <div class="navbar-start">
@@ -81,16 +82,21 @@
                     <ul tabindex="0"
                         class="menu menu-compact z-50  dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li>
-                            {{-- <a href="{{ route('admin.user.show', $user->id) }}" class="justify-between">
-                                Profile
-                                <span class="badge">New</span>
-                            </a> --}}
+                            @if (Auth::user()->level === 1)
+                                <a href="{{ route('admin.profile', Auth::user()->id) }}" class="justify-between text-lg">
+                                    Profile
+                                </a>
+                            @else
+                                <a href="{{ route('profile', Auth::user()->id) }}" class="justify-between text-lg">
+                                    Profile
+                                </a>
+                            @endif
                         </li>
-                        <li><a class="hover:rounded-lg">Settings</a></li>
+                        <li><a class="hover:rounded-lg text-lg">Settings</a></li>
                         <li>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
-                                <button type="submit">Logout</button>
+                                <button type="submit text-lg" class="text-lg">Logout</button>
                         </li>
                         </form>
                     </ul>
@@ -111,3 +117,4 @@
         </div>
     </div>
 </x-container>
+</div>

@@ -1,7 +1,7 @@
 <x-app-layout>
 
     {{-- breadcumbs --}}
-    <section id="breadcumbs" class="py-6">
+    <section id="breadcumbs" class="pt-6">
         <x-container>
             <div class="flex flex-wrap">
                 <div class="w-full px-4">
@@ -16,6 +16,7 @@
         </x-container>
     </section>
     {{-- Akhir breadcumbs --}}
+
     @if (!empty($orders))
         {{-- cari produk --}}
         <section id="cari-produk" class="pt-20 pb-8">

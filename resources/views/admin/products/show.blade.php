@@ -1,8 +1,38 @@
 <x-app-layout>
-    {{-- semua produk --}}
-    <section id="semua-produk">
+    {{-- breadcumbs --}}
+    <section id="breadcumbs" class="pt-6">
         <x-container>
-            <h2 class="text-3xl pt-20 pb-10 px-4 text-primary"><strong>Products</strong></h2>
+            <div class="flex flex-wrap">
+                <div class="w-full px-4">
+                    <div class="text-sm breadcrumbs">
+                        <ul>
+                            <li><a href="{{ route('dashboard') }}">Beranda</a></li>
+                            <li><a href="{{ route('admin.orders') }}">Produk</a></li>
+                            <li class="font-semibold">Rincian Produk</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </x-container>
+    </section>
+    {{-- Akhir breadcumbs --}}
+
+    {{-- semua produk --}}
+    <section id="semua-produk" class="py-12">
+        <x-container>
+            <div class="flex px-4 mb-8">
+                <div class="w-full flex items-center bg-white py-2 px-4 shadow-md rounded-md text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-breal" width="40"
+                        height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path
+                            d="M17 5a3 3 0 0 1 2 5.235v6.765a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6.764a3 3 0 0 1 1.824 -5.231l.176 -.005h10z">
+                        </path>
+                    </svg>
+                    <h2 class="px-4 font-semibold py-4 text-2xl">Rincian Produk</h2>
+                </div>
+            </div>
             <div class="px-4 flex flex-wrap rounded-md ">
                 <div class="w-full md:w-1/2 px-4 bg-white rounded-l-md">
                     <img src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//95/MTA-13708732/sari-roti_sari-roti-sobek-coklat-keju-216-gr_full01.jpg"
@@ -23,8 +53,9 @@
                             Non, consequuntur labore!</p>
                     </div>
                     <div class="flex justify-start gap-4 py-12">
-                        <form class="flex items-center gap-4" method="post" action="{{ route('admin.orders.store', $product->id) }}">
-                        @csrf
+                        <form class="flex items-center gap-4" method="post"
+                            action="{{ route('admin.orders.store', $product->id) }}">
+                            @csrf
                             <button class="py-2 px-2 shadow-md bg-secondary text-white rounded-md" onclick="minus()"
                                 type="button"><svg xmlns="http://www.w3.org/2000/svg"
                                     class="icon icon-tabler icon-tabler-minus" width="24" height="24"

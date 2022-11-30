@@ -53,7 +53,7 @@ class AdminUserController extends Controller
             "phone" => "required|numeric",
         ]);
 
-        $validateData['level'] = 1;
+        $validateData['level'] = 2;
         $validateData['password'] = Hash::make('sariroti');
 
         if ($request->file('image')) {

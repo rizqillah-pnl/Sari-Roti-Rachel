@@ -1,3 +1,4 @@
+
 <x-container>
     <div class="navbar">
         <div class="navbar-start">
@@ -75,18 +76,24 @@
                     <ul tabindex="0"
                         class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li>
-                            <a class="justify-between" href="{{ route('profile.show', Auth::user()->id ) }}">
+                        @if (Auth::user()->level === 1)
+                            <a class="justify-between text-lg" href="{{ route('admin.profile', Auth::user()->id ) }}">
                                 Profil
                             </a>
+                        @else
+                            <a class="justify-between text-lg" href="{{ route('profile', Auth::user()->id ) }}">
+                                Profil
+                            </a>
+                        @endif
                         </li>
-                        <li><a>Pengaturan</a></li>
+                        <li><a class="text-lg">Pengaturan</a></li>
                         @if (Auth::user()->level == 1)
-                            <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                            <li><a href="{{ route('dashboard') }}" class="text-lg">Dashboard</a></li>
                         @endif
                         <li>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
-                                <button type="submit">Logout</button>
+                                <button type="submit" class="text-lg">Logout</button>
                         </li>
                         </form>
                     </ul>
@@ -107,3 +114,4 @@
         </div>
     </div>
 </x-container>
+</div>

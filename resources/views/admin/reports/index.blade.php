@@ -2,13 +2,19 @@
     {{-- laporan --}}
     <section id="cari-laporan" class="pt-20 pb-8">
         <x-container>
-            <div class="flex flex-wrap justify-between items-center">
-                <div class="w-1/2 px-4">
-                    <div class="w-full flex justify-between">
-                        <div>
-                            <h2 class="text-3xl text-primary"><strong>Laporan</strong></h2>
-                        </div>
-                    </div>
+            <div class="flex px-4 mb-8">
+                <div class="w-full flex items-center bg-white py-2 px-4 shadow-md rounded-md text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clipboard-text"
+                        width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2">
+                        </path>
+                        <rect x="9" y="3" width="6" height="4" rx="2"></rect>
+                        <path d="M9 12h6"></path>
+                        <path d="M9 16h6"></path>
+                    </svg>
+                    <h2 class="px-4 font-semibold py-4 text-2xl">Laporan</h2>
                 </div>
             </div>
         </x-container>
@@ -47,7 +53,8 @@
             <div class="flex flex-wrap items-center">
                 <div class="w-full px-4 text-center py-4">
                     <h3 class="text-2xl font-semibold">Laporan Harian</h3>
-                    <p>Laporan Penjualan dari tanggal <strong>02 Novemver 2022</strong> sampai dengan <strong>20 Februari 2023</strong></p>
+                    <p>Laporan Penjualan dari tanggal <strong>02 Novemver 2022</strong> sampai dengan <strong>20
+                            Februari 2023</strong></p>
                 </div>
                 <div class="w-full px-4">
                     <table class="table w-full">
@@ -99,9 +106,12 @@
                                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                             stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <line x1="4" y1="7" x2="20" y2="7"></line>
-                                            <line x1="10" y1="11" x2="10" y2="17"></line>
-                                            <line x1="14" y1="11" x2="14" y2="17"></line>
+                                            <line x1="4" y1="7" x2="20" y2="7">
+                                            </line>
+                                            <line x1="10" y1="11" x2="10" y2="17">
+                                            </line>
+                                            <line x1="14" y1="11" x2="14" y2="17">
+                                            </line>
                                             <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
                                             <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
                                         </svg></a>

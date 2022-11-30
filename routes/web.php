@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminCustomerController;
 use App\Http\Controllers\AdminHistoryController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\AdminReportController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\HistoryController;
@@ -89,6 +90,9 @@ Route::post('/admin/checkout', [AdminOrderController::class, 'checkout'])->name(
 Route::get('/admin/user/', [AdminUserController::class, 'index'])->name('admin.user');
 Route::get('admin/user/create', [AdminUserController::class, 'create'])->name('admin.user.create');
 Route::post('admin/user/store', [AdminUserController::class, 'store'])->name('admin.user.store');
+
+// Admin Profile
+Route::get('/admin/profile/{user}', [AdminProfileController::class, 'show'])->name('admin.profile');
 
 // Admin Report
 Route::get('/admin/report', [AdminReportController::class, 'index'])->name('admin.report');

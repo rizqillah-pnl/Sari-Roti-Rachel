@@ -2,7 +2,24 @@
     {{-- semua-order-detail --}}
     <section id="semua-produk">
         <x-container>
-            <h2 class="text-3xl pt-20 pb-10 px-4 text-primary"><strong>Detail Riwayat Pemesanan</strong></h2>
+            {{-- breadcumbs --}}
+            <section id="breadcumbs" class="pt-6">
+                <x-container>
+                    <div class="flex flex-wrap">
+                        <div class="w-full px-4">
+                            <div class="text-sm breadcrumbs">
+                                <ul>
+                                    <li><a href="{{ route('dashboard') }}">Beranda</a></li>
+                                    <li><a href="{{ route('admin.history') }}">Riwayat</a></li>
+                                    <li class="font-semibold">Detail Riwayat Pemesanan</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </x-container>
+            </section>
+            {{-- Akhir breadcumbs --}}
+
             <div class="flex flex-wrap rounded-md">
                 @foreach ($order_details as $order)
                     <div class="w-full md:w-1/3 px-4 rounded-md mb-4">
@@ -22,7 +39,7 @@
                                         </tr>
                                         <tr>
                                             <td>Harga</td>
-                                            <td>: <strong>  Rp. {{ $order->total_price }}</strong></td>
+                                            <td>: <strong> Rp. {{ $order->total_price }}</strong></td>
                                         </tr>
                                         <tr>
                                             <td colspan="2">{{ $order->product->description }}</td>
