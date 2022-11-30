@@ -17,7 +17,7 @@
     {{-- Akhir breadcumbs --}}
 
     {{-- semua pelanggan --}}
-    <section id="semua-pelanggan">
+    <section id="semua-pelanggan" class="py-12">
         <x-container>
             <div class="flex px-4 mb-8">
                 <div class="w-full flex items-center bg-white py-2 px-4 shadow-md rounded-md text-primary">

@@ -133,9 +133,14 @@ class AdminProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        Product::destroy('id', $product->id);
+        $oldImage = Product::where('id', $product->id)->first();
+        if ($oldImage->image) {
+            Storage::delete($oldImage->image);
+        }
+
+        Product::destroy($product->id);
 
         FacadesAlert::success('Berhasil', "Produk Berhasil Dihapus");
-        return redirect()->route('admin.product');
+        return redirect()->route('admin.products');
     }
 }

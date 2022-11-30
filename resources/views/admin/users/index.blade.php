@@ -55,8 +55,9 @@
             </div>
             <div class="flex flex-wrap">
                 <div class="w-full px-4">
-                <div class="pb-4">
-                        <a href="{{ route('admin.user.create') }}" class="px-3 py-2.5 text-white bg-green-500 rounded-md">Tambah Data</a>
+                    <div class="pb-4">
+                        <a href="{{ route('admin.user.create') }}"
+                            class="px-3 py-2.5 text-white bg-green-500 rounded-md">Tambah Data</a>
                     </div>
                     <table class="table w-full">
                         <thead>
@@ -74,7 +75,8 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
-                                        <img src="{{ asset('storage/' . $user->foto) }}" alt="" class="rounded-md w-32">
+                                        <img src="{{ asset('storage/' . $user->image) }}" alt=""
+                                            class="rounded-md shadow w-28">
                                     </td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
@@ -96,8 +98,7 @@
                                                     <circle cx="12" cy="12" r="9"></circle>
                                                     <line x1="12" y1="8" x2="12" y2="12">
                                                     </line>
-                                                    <line x1="12" y1="16" x2="12.01"
-                                                        y2="16">
+                                                    <line x1="12" y1="16" x2="12.01" y2="16">
                                                     </line>
                                                 </svg></a>
                                         @elseif($user->level == 2)
@@ -116,25 +117,31 @@
                                                         d="M9 7.07a7.002 7.002 0 0 0 1 13.93a7.002 7.002 0 0 0 6.929 -5.999">
                                                     </path>
                                                 </svg></a>
-                                            <a href="" class="btn btn-sm btn-error text-white"><svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    class="icon icon-tabler icon-tabler-trash" width="22"
-                                                    height="22" viewBox="0 0 24 24" stroke-width="2"
-                                                    stroke="currentColor" fill="none" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                    <line x1="4" y1="7" x2="20"
-                                                        y2="7">
-                                                    </line>
-                                                    <line x1="10" y1="11" x2="10"
-                                                        y2="17">
-                                                    </line>
-                                                    <line x1="14" y1="11" x2="14"
-                                                        y2="17">
-                                                    </line>
-                                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
-                                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
-                                                </svg></a>
+                                            <form action="{{ route('admin.user.destroy', $user->id) }}" class="inline"
+                                                method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-sm btn-error text-white"><svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        class="icon icon-tabler icon-tabler-trash" width="22"
+                                                        height="22" viewBox="0 0 24 24" stroke-width="2"
+                                                        stroke="currentColor" fill="none" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                        <line x1="4" y1="7" x2="20"
+                                                            y2="7">
+                                                        </line>
+                                                        <line x1="10" y1="11" x2="10"
+                                                            y2="17">
+                                                        </line>
+                                                        <line x1="14" y1="11" x2="14"
+                                                            y2="17">
+                                                        </line>
+                                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12">
+                                                        </path>
+                                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                                    </svg></button>
+                                            </form>
                                         @endif
                                     </td>
                                 </tr>

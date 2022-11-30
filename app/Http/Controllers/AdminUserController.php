@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 
 class AdminUserController extends Controller
@@ -45,7 +46,6 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
         $validateData = $request->validate([
             "name" => "required",
             "image" => "file|image|required",
@@ -109,8 +109,16 @@ class AdminUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $oldImage = User::where('id', $user->id)->first();
+        if($oldImage->image){
+            Storage::delete($oldImage->image);
+        }
+
+        User::destroy($user->id);
+
+        FacadesAlert::success('Berhasil', "User Berhasil Dihapus!");
+        return redirect()->route('admin.user');
     }
 }
