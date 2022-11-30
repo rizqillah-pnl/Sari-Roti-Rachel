@@ -92,7 +92,10 @@
                                 </a>
                             @endif
                         </li>
-                        <li><a class="hover:rounded-lg text-lg">Settings</a></li>
+                        @if (Auth::user()->level == 1)
+                            <li><a href="{{ route('/') }}" class="text-lg">Home</a></li>
+                        @endif
+                        <li><a class="hover:rounded-lg text-lg">Pengaturan</a></li>
                         <li>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf

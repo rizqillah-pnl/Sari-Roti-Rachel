@@ -16,10 +16,10 @@
     </section>
     {{-- Akhir breadcumbs --}}
 
-    {{-- cari produk --}}
-    <section id="cari-produk" class="py-12">
+    {{-- semua pelanggan --}}
+    <section id="semua-pelanggan">
         <x-container>
-            <div class="flex px-4">
+            <div class="flex px-4 mb-8">
                 <div class="w-full flex items-center bg-white py-2 px-4 shadow-md rounded-md text-primary">
                     <div class="flex w-full flex-wrap items-center">
                         <div class="w-full md:w-1/2 flex items-center mb-3">
@@ -36,34 +36,33 @@
                         </div>
                         <div class="w-full md:w-1/2 float-right">
                             <div class="form-control">
-                                <div class="input-group">
-                                    <input type="text" placeholder="Search…" class="input input-bordered w-full" />
-                                    <button class="btn px-6 bg-secondary border-none hover:bg-primary">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                        </svg>
-                                    </button>
-                                </div>
+                                <form action="{{ route('admin.customers') }}" method="get">
+                                    <div class="input-group">
+                                        @csrf
+
+                                        <input type="text" placeholder="Search…" class="input input-bordered w-full"
+                                            name="search" />
+                                        <button class="btn px-6 bg-secondary border-none hover:bg-primary">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                            </svg>
+                                        </button>
+
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
 
             </div>
-
-        </x-container>
-    </section>
-    {{-- akhir cari produk --}}
-
-    {{-- semua pelanggan --}}
-    <section id="semua-pelanggan">
-        <x-container>
             <div class="flex flex-wrap">
                 <div class="w-full px-4">
                     <div class="pb-4">
-                        <a href="{{ route('admin.user.create') }}" class="px-3 py-2.5 text-white bg-green-500 rounded-md">Tambah Data</a>
+                        <a href="{{ route('admin.user.create') }}"
+                            class="px-3 py-2.5 text-white bg-green-500 rounded-md">Tambah Data</a>
                     </div>
                     <table class="table w-full">
                         <thead>
@@ -114,8 +113,7 @@
                                                     d="M9 7.07a7.002 7.002 0 0 0 1 13.93a7.002 7.002 0 0 0 6.929 -5.999">
                                                 </path>
                                             </svg></a>
-                                        <form action="{{ route('admin.customers.destroy', $user->id) }}"
-                                            method="post">
+                                        <form action="{{ route('admin.customers.destroy', $user->id) }}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-sm btn-error text-white"><svg
