@@ -25,7 +25,7 @@
                 <div class="flex px-4 mb-8">
                     <div class="w-full flex items-center bg-white py-2 px-4 shadow-md rounded-md text-primary">
                         <div class="flex w-full items-center">
-                            <div class="w-1/2 flex items-center">
+                            <div class="w-full md:w-1/2 flex items-center mb-3">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="icon icon-tabler icon-tabler-shopping-cart" width="40" height="40"
                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -38,7 +38,7 @@
                                 </svg>
                                 <h2 class="px-4 font-semibold py-4 text-2xl">Keranjang</h2>
                             </div>
-                            <div class="w-1/2 float-right">
+                            <div class="w-full md:w-1/2 float-right">
                                 <div class="form-control">
                                     <div class="input-group">
                                         <input type="text" placeholder="Search…"

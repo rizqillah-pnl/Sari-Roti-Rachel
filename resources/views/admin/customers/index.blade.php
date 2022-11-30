@@ -1,5 +1,5 @@
 <x-app-layout>
-     {{-- breadcumbs --}}
+    {{-- breadcumbs --}}
     <section id="breadcumbs" class="pt-6">
         <x-container>
             <div class="flex flex-wrap">
@@ -19,21 +19,22 @@
     {{-- cari produk --}}
     <section id="cari-produk" class="py-12">
         <x-container>
-        <div class="flex px-4">
+            <div class="flex px-4">
                 <div class="w-full flex items-center bg-white py-2 px-4 shadow-md rounded-md text-primary">
-                    <div class="flex w-full items-center">
-                        <div class="w-1/2 flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bread"
+                    <div class="flex w-full flex-wrap items-center">
+                        <div class="w-full md:w-1/2 flex items-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users"
                                 width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path
-                                    d="M17 5a3 3 0 0 1 2 5.235v6.765a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6.764a3 3 0 0 1 1.824 -5.231l.176 -.005h10z">
-                                </path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
                             </svg>
-                            <h2 class="px-4 font-semibold py-4 text-2xl">Produk</h2>
+                            <h2 class="px-4 font-semibold py-4 text-2xl">Pelanggan</h2>
                         </div>
-                        <div class="w-1/2 float-right">
+                        <div class="w-full md:w-1/2 float-right">
                             <div class="form-control">
                                 <div class="input-group">
                                     <input type="text" placeholder="Search…" class="input input-bordered w-full" />
@@ -61,6 +62,9 @@
         <x-container>
             <div class="flex flex-wrap">
                 <div class="w-full px-4">
+                    <div class="pb-4">
+                        <a href="{{ route('admin.user.create') }}" class="px-3 py-2.5 text-white bg-green-500 rounded-md">Tambah Data</a>
+                    </div>
                     <table class="table w-full">
                         <thead>
                             <tr>
@@ -110,7 +114,8 @@
                                                     d="M9 7.07a7.002 7.002 0 0 0 1 13.93a7.002 7.002 0 0 0 6.929 -5.999">
                                                 </path>
                                             </svg></a>
-                                        <form action="{{ route('admin.customers.destroy', $user->id) }}" method="post">
+                                        <form action="{{ route('admin.customers.destroy', $user->id) }}"
+                                            method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-sm btn-error text-white"><svg
@@ -120,11 +125,14 @@
                                                     stroke="currentColor" fill="none" stroke-linecap="round"
                                                     stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                    <line x1="4" y1="7" x2="20" y2="7">
+                                                    <line x1="4" y1="7" x2="20"
+                                                        y2="7">
                                                     </line>
-                                                    <line x1="10" y1="11" x2="10" y2="17">
+                                                    <line x1="10" y1="11" x2="10"
+                                                        y2="17">
                                                     </line>
-                                                    <line x1="14" y1="11" x2="14" y2="17">
+                                                    <line x1="14" y1="11" x2="14"
+                                                        y2="17">
                                                     </line>
                                                     <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
                                                     <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>

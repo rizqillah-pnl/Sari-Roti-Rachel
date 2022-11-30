@@ -22,7 +22,7 @@
         <section id="cari-produk" class="pt-20 pb-8">
             <x-container>
                 <div class="flex flex-wrap justify-between items-center">
-                    <div class="w-1/2 px-4">
+                    <div class="w-full md:w-1/2 px-4">
                         <div class="w-full flex justify-between">
                             <div>
                                 <h2 class="text-3xl text-primary"><strong>Riwayat Pemesanan</strong></h2>
@@ -30,7 +30,7 @@
                         </div>
                     </div>
 
-                    <div class="w-1/2 px-4">
+                    <div class="w-full md:w-1/2 px-4">
                         <div class="form-control">
                             <div class="input-group">
                                 <input type="text" placeholder="Search…" class="input input-bordered w-full" />

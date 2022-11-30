@@ -45,6 +45,7 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         $validateData = $request->validate([
             "name" => "required",
             "image" => "file|image|required",

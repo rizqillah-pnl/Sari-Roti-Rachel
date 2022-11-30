@@ -19,6 +19,7 @@
     {{-- semua produk --}}
     <section id="semua-produk" class="py-12">
         <x-container>
+            <div class="w-full px-4">
             <div class="w-full flex items-center bg-white py-2 px-4 shadow-md rounded-md text-primary">
                 <div class="flex w-full flex-wrap items-center">
                     <div class="w-full md:w-1/4 flex items-center">
@@ -99,6 +100,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
 
             <section id="semua-products" class="py-12">

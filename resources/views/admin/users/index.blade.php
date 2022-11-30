@@ -55,6 +55,9 @@
             </div>
             <div class="flex flex-wrap">
                 <div class="w-full px-4">
+                <div class="pb-4">
+                        <a href="{{ route('admin.user.create') }}" class="px-3 py-2.5 text-white bg-green-500 rounded-md">Tambah Data</a>
+                    </div>
                     <table class="table w-full">
                         <thead>
                             <tr>
@@ -70,7 +73,9 @@
                             @forelse ($users as $user)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $user->image }}</td>
+                                    <td>
+                                        <img src="{{ asset('storage/' . $user->foto) }}" alt="" class="rounded-md w-32">
+                                    </td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
