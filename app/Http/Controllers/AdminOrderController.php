@@ -16,11 +16,11 @@ class AdminOrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-if(isset($request)) {
-            $product = Product::where('name', 'LIKE', '%' . $request->search . '%' )->paginate(8);
-        }else {
+        if (isset($request)) {
+            $product = Product::where('name', 'LIKE', '%' . $request->search . '%')->paginate(8);
+        } else {
             $product = Product::paginate(8);
         }
 
@@ -102,7 +102,8 @@ if(isset($request)) {
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function checkout(Request $request) {
+    public function checkout(Request $request)
+    {
         $order = Order::where('user_id', Auth::user()->id)->where('status', 0)->first();
         $dataOrder['customer_name'] = $request->customer_name;
         $dataOrder['status'] = 1;
@@ -166,5 +167,4 @@ if(isset($request)) {
         FacadesAlert::success('Berhasil', "Pesanan Berhasil Dihapus");
         return redirect()->route('admin.history');
     }
-
 }

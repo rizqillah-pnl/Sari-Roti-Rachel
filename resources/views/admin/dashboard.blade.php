@@ -34,10 +34,10 @@
             </div>
 
             <div class="flex flex-wrap justify-end items-center">
-                <div class="w-full md:w-1/5 px-4 mb-8 flex items-center ">
+                <div class="w-full md:w-1/4 px-4 mb-8 flex items-center ">
                     <img src="https://upload.wikimedia.org/wikipedia/id/6/67/Sari_Roti-Rotinya_Indonesia.png" alt="" class="w-64 hidden md:block">
                 </div>
-                <div class="w-full md:w-2/3 px-4">
+                <div class="w-full md:w-3/4 px-4">
                     <div class="flex justify-start bg-white shadow-md rounded-md items-center mb-8">
                         <div class="w-1/4 flex justify-center items-center px-4 py-6">
                             <div

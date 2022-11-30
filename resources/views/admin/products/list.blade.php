@@ -87,9 +87,11 @@
                     <div class="w-full md:w-1/2 float-right">
 
                         <div class="form-control">
+                            <form action="{{ route('admin.orders') }}" method="get">
+                            @csrf
                             <div class="input-group">
-                                <input type="text" placeholder="Search…" class="input input-bordered w-full" />
-                                <button class="btn px-6 bg-secondary border-none hover:bg-primary">
+                                <input type="text" placeholder="Search…" class="input input-bordered w-full" name="search" />
+                                <button class="btn px-6 bg-secondary border-none hover:bg-primary" type="submit">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -97,6 +99,7 @@
                                     </svg>
                                 </button>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
