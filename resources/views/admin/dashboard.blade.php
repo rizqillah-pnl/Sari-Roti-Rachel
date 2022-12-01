@@ -62,7 +62,6 @@
                                 @php
                                     if (!empty(Auth::user()->id)) {
                                         $total = App\Models\Order::where('status', 1)
-                                            ->where('user_id', Auth::user()->id)
                                             ->sum('total_order_price');
                                     }
                                 @endphp

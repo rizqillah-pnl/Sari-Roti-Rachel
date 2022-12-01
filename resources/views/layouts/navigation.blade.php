@@ -1,4 +1,3 @@
-
 <x-container>
     <div class="navbar">
         <div class="navbar-start">
@@ -17,11 +16,9 @@
                     <li><a
                             class="text-lg hover:rounded-lg {{ Route::is('product') ? 'font-bold text-primary' : '' }}">Produk</a>
                     </li>
-                    <li><a href="../#tentang"
-                            class="text-lg hover:rounded-lg">Tentang</a>
+                    <li><a href="../#tentang" class="text-lg hover:rounded-lg">Tentang</a>
                     </li>
-                    <li><a href="../#kontak"
-                            class="text-lg hover:rounded-lg">Kontak</a>
+                    <li><a href="../#kontak" class="text-lg hover:rounded-lg">Kontak</a>
                     </li>
                 </ul>
             </div>
@@ -34,11 +31,9 @@
                 <li><a href="{{ route('produk') }}"
                         class="text-lg hover:rounded-lg {{ Route::is('produk') ? 'font-bold text-primary' : '' }}">Produk</a>
                 </li>
-                <li><a href="../#tentang"
-                        class="text-lg hover:rounded-lg">Tentang</a>
+                <li><a href="../#tentang" class="text-lg hover:rounded-lg">Tentang</a>
                 </li>
-                <li><a href="../#kontak"
-                        class="text-lg hover:rounded-lg">Kontak</a>
+                <li><a href="../#kontak" class="text-lg hover:rounded-lg">Kontak</a>
                 </li>
             </ul>
         </div>
@@ -47,11 +42,14 @@
             @if (Auth::user())
                 @php
                     if (!empty(Auth::user()->id)) {
-                        $order = App\Models\Order::where('status', 1)->where('customer_name', Auth::user()->name)->count('customer_name');
+                        $order = App\Models\Order::where('status', 1)
+                            ->where('customer_name', Auth::user()->name)
+                            ->count('customer_name');
                     }
                 @endphp
                 @if (!empty($order))
-                    <a href="{{ route('history') }}" class="text-lg hover:rounded-lg {{ Route::is('/') ? 'font-bold text-primary' : '' }} relative"><svg
+                    <a href="{{ route('history') }}"
+                        class="text-lg hover:rounded-lg {{ Route::is('/') ? 'font-bold text-primary' : '' }} relative"><svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="icon icon-tabler icon-tabler-shopping-cart mr-6 text-primary" width="28"
                             height="28" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -67,6 +65,24 @@
                             {{ $order }}</div>
                     </a>
                 @endif
+                @if (Auth::user()->member === 3 || Auth::user()->member === 2)
+                    <label for="my-modal-2"
+                        class="text-lg hover:rounded-lg text-primary {{ Route::is('/') ? 'font-bold text-primary' : '' }} relative"><svg
+                            xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bell mr-6"
+                            width="28" height="28" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path
+                                d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6">
+                            </path>
+                            <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path>
+                        </svg>
+                        <div
+                            class="badge badge-sm border-none text-white py-2.5  bg-secondary border border-secondary shadow-lg absolute top-0 right-4 text-xs">
+                            {{ $order }}</div>
+                    </label>
+                @endif
+                </a>
                 <div class="dropdown dropdown-end">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                         <div class="w-10 rounded-full">
@@ -76,15 +92,16 @@
                     <ul tabindex="0"
                         class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li>
-                        @if (Auth::user()->level === 1)
-                            <a class="justify-between text-lg" href="{{ route('admin.profile', Auth::user()->id ) }}">
-                                Profil
-                            </a>
-                        @else
-                            <a class="justify-between text-lg" href="{{ route('profile', Auth::user()->id ) }}">
-                                Profil
-                            </a>
-                        @endif
+                            @if (Auth::user()->level === 1)
+                                <a class="justify-between text-lg"
+                                    href="{{ route('admin.profile', Auth::user()->id) }}">
+                                    Profil
+                                </a>
+                            @else
+                                <a class="justify-between text-lg" href="{{ route('profile', Auth::user()->id) }}">
+                                    Profil
+                                </a>
+                            @endif
                         </li>
                         <li><a class="text-lg">Pengaturan</a></li>
                         @if (Auth::user()->level == 1)
@@ -99,9 +116,8 @@
                     </ul>
                 </div>
             @else
-                <a class="text-lg hover:rounded-lg"
-                    href="{{ route('login') }}"><span class="hidden md:block">Daftar/Masuk</span><svg
-                        xmlns="http://www.w3.org/2000/svg"
+                <a class="text-lg hover:rounded-lg" href="{{ route('login') }}"><span
+                        class="hidden md:block">Daftar/Masuk</span><svg xmlns="http://www.w3.org/2000/svg"
                         class="icon icon-tabler icon-tabler-login block md:hidden text-primary" width="28"
                         height="28" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                         stroke-linecap="round" stroke-linejoin="round">
@@ -113,5 +129,39 @@
             @endif
         </div>
     </div>
+
+    {{-- modal notifikasi --}}
+    @if (!empty(Auth::user()))
+        <input type="checkbox" id="my-modal-2" class="modal-toggle" />
+        <div class="modal">
+            <div class="modal-box relative text-center">
+                <label for="my-modal-2" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                <h3 class="text-xl font-semibold mb-3">Selamat {{ Auth::user()->name }}</h3>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-gift text-red-500 mx-auto"
+                    width="80" height="80" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <rect x="3" y="8" width="18" height="4" rx="1"></rect>
+                    <line x1="12" y1="8" x2="12" y2="21"></line>
+                    <path d="M19 12v7a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-7"></path>
+                    <path d="M7.5 8a2.5 2.5 0 0 1 0 -5a4.8 8 0 0 1 4.5 5a4.8 8 0 0 1 4.5 -5a2.5 2.5 0 0 1 0 5"></path>
+                </svg>
+
+                <p class="py-4">Total pembelian Anda mencapai
+                    @if (Auth::user()->member === 3)
+                        <strong>Rp. 200.000</strong><br>
+                        Sekarang Anda berada di level <span class="font-semibold text-amber-900">Cokelat</span>
+                        Anda mendapatkan potongan harga sebesar <span class="font-semibold text-danger">30%</span>
+                    @elseif (Auth::user()->member == 2)
+                        <strong>Rp. 100.00</strong>
+                        Sekarang Anda berada di level <span class="font-semibold text-purple-500">Anggur</span> <br>
+                        Anda mendapatkan potongan harga sebesar <span class="font-semibold text-danger">20%</span>
+                    @endif
+                </p>
+            </div>
+        </div>
+    @endif
+    {{-- akhir modal notifikasi --}}
+
 </x-container>
 </div>

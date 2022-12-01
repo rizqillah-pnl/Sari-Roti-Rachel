@@ -104,7 +104,8 @@
                                                 </path>
                                                 <path d="M15 19l2 2l4 -4"></path>
                                             </svg></a>
-                                        <label for="my-modal-3" class="btn btn-sm btn-warning text-white"><svg
+                                            @if (Auth::user()->member === 3)
+                                                <label for="my-modal-3" class="btn btn-sm btn-warning text-white"><svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 class="icon icon-tabler icon-tabler-edit-circle" width="22"
                                                 height="22" viewBox="0 0 24 24" stroke-width="2"
@@ -119,6 +120,7 @@
                                                     d="M9 7.07a7.002 7.002 0 0 0 1 13.93a7.002 7.002 0 0 0 6.929 -5.999">
                                                 </path>
                                             </svg></label>
+                                        @endif
                                         <form action="{{ route('admin.customers.destroy', $user->id) }}"
                                             method="post">
                                             @csrf
@@ -167,9 +169,8 @@
             <div class="form-group">
                 <form action="{{ route('admin.customers') }}" method="post">
                     @csrf
-                    <select name="name" id="name" class="rounded-md border-0 shadow-md w-full">
-                        <option value="0" selected>Pandan</option>
-                    </select>
+                    <input type="text" name="member" class="input input-bordered w-full" placeholder="Panda" hidden >
+                    <button class="btn btn-success text-white">Pandan</button>
                 </form>
             </div>
         </div>
