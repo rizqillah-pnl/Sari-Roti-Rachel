@@ -89,6 +89,7 @@ Route::post('/admin/checkout', [AdminOrderController::class, 'checkout'])->name(
 // Admin User
 Route::get('/admin/user/', [AdminUserController::class, 'index'])->name('admin.user');
 Route::get('admin/user/create', [AdminUserController::class, 'create'])->name('admin.user.create');
+Route::get('admin/user/{user}', [AdminUserController::class, 'show'])->name('admin.user.show');
 Route::post('admin/user/store', [AdminUserController::class, 'store'])->name('admin.user.store');
 Route::delete('admin/user/{user}', [AdminUserController::class, 'destroy'])->name('admin.user.destroy');
 

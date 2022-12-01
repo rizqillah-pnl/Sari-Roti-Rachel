@@ -1,83 +1,101 @@
 <x-app-layout>
-    {{-- cari produk --}}
-    <section id="cari-produk" class="pt-20 pb-8">
+
+    {{-- breadcumbs --}}
+    <section id="breadcumbs" class="pt-6">
         <x-container>
-            <div class="flex flex-wrap justify-between items-center">
-                <div class="w-1/2 px-4">
-                    <div class="w-full flex justify-between">
-                        <div>
-                            <h2 class="text-3xl text-primary"><strong>Tambah Produk</strong></h2>
+            <div class="flex flex-wrap">
+                <div class="w-full px-4">
+                    <div class="text-sm breadcrumbs">
+                        <ul>
+                            <li><a href="{{ route('dashboard') }}">Beranda</a></li>
+                            <li><a href="{{ route('admin.products') }}">Produk</a></li>
+                            <li class="font-semibold">Tambah Produk</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </x-container>
+    </section>
+    {{-- Akhir breadcumbs --}}
+
+    {{-- semua produk --}}
+    <section id="semua-produk" class="py-12">
+        <x-container>
+            <div class="flex flex-wrap px-4 mb-8">
+                <div class="w-full flex items-center bg-white py-2 px-4 shadow-md rounded-md text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clipboard-text"
+                        width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2">
+                        </path>
+                        <rect x="9" y="3" width="6" height="4" rx="2"></rect>
+                        <path d="M9 12h6"></path>
+                        <path d="M9 16h6"></path>
+                    </svg>
+                    <h2 class="px-4 font-semibold py-5 text-2xl">Tambah Produk</h2>
+                </div>
+            </div>
+            <div class="flex flex-wrap px-4">
+                <form action="{{ route('admin.products.store') }}" method="post" enctype="multipart/form-data"
+                    class="w-full flex justify-between bg-white shadow-md rounded-md ">
+                    <div class="w-full md:w-1/2 p-4">
+                        @csrf
+                        <div class="form-group mb-3">
+                            <label for="name">Nama</label>
+                            <input type="text" name="name" id="name" placeholder="Masukkan nama.."
+                                class="w-full rounded-md input-bordered input @error('name') border-red-500 @enderror"
+                                value="{{ old('name') }}">
+                            @error('name')
+                                <span class="text-red-500 text-xs ml-1">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="price">Harga</label>
+                            <input type="text" name="price" id="price" placeholder="Masukkan harga.."
+                                class="w-full rounded-md input-bordered input @error('price') border-red-500 @enderror"
+                                value="{{ old('price') }}">
+                            @error('price')
+                                <span class="text-red-500 text-xs ml-1">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="stok">Jumlah</label>
+                            <input type="text" name="stok" id="stok" placeholder="Masukkan stok.."
+                                class="w-full rounded-md input-bordered input @error('stok') border-red-500 @enderror"
+                                value="{{ old('stok') }}">
+                            @error('stok')
+                                <span class="text-red-500 text-xs ml-1">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
-                </div>
-            </div>
-        </x-container>
-    </section>
-    {{-- akhir cari produk --}}
-
-    {{-- semua Produk --}}
-    <section id="semua-produk">
-        <x-container>
-            <div class="flex flex-wrap px-4">
-                <div class="w-full flex items-center justify-center bg-white shadow-md rounded-md ">
                     <div class="w-full md:w-1/2 p-4">
-                        <form action="{{ route('admin.products.store') }}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-group mb-3">
-                                <label for="name">Nama</label>
-                                <input type="text" name="name" id="name" placeholder="Masukkan nama produk.."
-                                    class="w-full rounded-md input-bordered input @error('name') border-red-500 @enderror" value="{{ old('name') }}">
-                                @error('name')
-                                    <span class="text-red-500 text-xs ml-1">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="price">Harga</label>
-                                <input type="text" name="price" id="price"
-                                    placeholder="Masukkan harga produk.."
-                                    class="w-full rounded-md input-bordered input @error('price') border-red-500 @enderror" value="{{ old('price') }}">
-                                @error('price')
-                                    <span class="text-red-500 text-xs ml-1">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="stok">Jumlah</label>
-                                <input type="text" name="stok" id="stok"
-                                    placeholder="Masukkan jumlah produk.."
-                                    class="w-full rounded-md input-bordered input @error('stok') border-red-500 @enderror" value="{{ old('stok') }}">
-                                @error('stok')
-                                    <span class="text-red-500 text-xs ml-1">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="description">Keterangan</label>
-                                <textarea type="text" name="description" id="description" placeholder="Masukkan keterangan produk.."
-                                    class="w-full rounded-md  textarea textarea-bordered @error('description') border-red-500 @enderror" value="{{ old('description') }}">
+                        <div class="form-group mb-3">
+                            <label for="description">Keterangan</label>
+                            <textarea type="text" name="description" id="description" placeholder="Masukkan alamat.."
+                                class="w-full rounded-md  textarea textarea-bordered @error('description') border-red-500 @enderror"
+                                value="{{ old('description') }}" rows="4">
                                 </textarea>
-                                @error('description')
-                                    <span class="text-red-500 text-xs ml-1">{{ $message }}</span>
-                                @enderror
-                            </div>
-
-                            <div class="form-group mb-8">
-                                <label for="image">Gambar</label>
-                                <input type="file" name="image" id="image"
-                                    class="w-full rounded-md file-input file-input-bordered @error('image') border-red-500 @enderror" value="{{ old('image') }}">
-                                @error('image')
-                                    <span class="text-red-500 text-xs ml-1">{{ $message }}</span>
-                                @enderror
-                            </div>
-
+                            @error('description')
+                                <span class="text-red-500 text-xs ml-1">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-8">
+                            <label for="image">Gambar</label>
+                            <input type="file" name="image" id="image"
+                                class="w-full rounded-md file-input file-input-bordered @error('image') border-red-500 @enderror"
+                                value="{{ old('image') }}">
+                            @error('image')
+                                <span class="text-red-500 text-xs ml-1">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="flex justify-end">
                             <button type="submit" class="btn btn-success text-white">Tambah</button>
-                        </form>
+                        </div>
                     </div>
-                    <div class="w-full md:w-1/2 p-4">
-                        <img src="https://st2.depositphotos.com/1765462/10919/v/600/depositphotos_109195074-stock-illustration-bread-sketches-hand-drawing.jpg"
-                            alt="" class="w-80 mx-auto">
-                    </div>
-                </div>
+                </form>
             </div>
         </x-container>
     </section>
-    {{-- akhir semua Produk --}}
+    {{-- akhir semua produk --}}
 </x-app-layout>

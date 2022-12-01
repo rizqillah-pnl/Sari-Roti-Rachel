@@ -17,10 +17,10 @@
                     <li><a
                             class="text-lg hover:rounded-lg {{ Route::is('product') ? 'font-bold text-primary' : '' }}">Produk</a>
                     </li>
-                    <li><a href="#tentang"
+                    <li><a href="../#tentang"
                             class="text-lg hover:rounded-lg">Tentang</a>
                     </li>
-                    <li><a href="#kontak"
+                    <li><a href="../#kontak"
                             class="text-lg hover:rounded-lg">Kontak</a>
                     </li>
                 </ul>
@@ -31,13 +31,13 @@
             <ul class="menu menu-horizontal p-0">
                 <li><a class="text-lg hover:rounded-lg {{ Route::is('/') ? 'font-bold text-primary' : '' }} {{ Route::is('/') ? 'font-bold text-primary' : '' }}"
                         href="{{ route('/') }}">Beranda</a></li>
-                <li><a
+                <li><a href="{{ route('produk') }}"
                         class="text-lg hover:rounded-lg {{ Route::is('produk') ? 'font-bold text-primary' : '' }}">Produk</a>
                 </li>
-                <li><a href="#tentang"
-                        class="text-lg hover:rounded-lg {{ Route::is('produk') ? 'font-bold text-primary' : '' }}">Tentang</a>
+                <li><a href="../#tentang"
+                        class="text-lg hover:rounded-lg">Tentang</a>
                 </li>
-                <li><a href="#kontak"
+                <li><a href="../#kontak"
                         class="text-lg hover:rounded-lg">Kontak</a>
                 </li>
             </ul>

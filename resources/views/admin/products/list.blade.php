@@ -31,7 +31,7 @@
                                 d="M17 5a3 3 0 0 1 2 5.235v6.765a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6.764a3 3 0 0 1 1.824 -5.231l.176 -.005h10z">
                             </path>
                         </svg>
-                        <h2 class="px-4 font-semibold py-4 text-2xl">Produk</h2>
+                        <h2 class="px-4 font-semibold py-5 text-2xl">Produk</h2>
                     </div>
                     <div class="w-full -mt-14 md:mt-0 md:w-1/4 flex gap-3 px-4 justify-end relative">
                         @php

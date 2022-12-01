@@ -1,8 +1,26 @@
 <x-app-layout>
-    {{-- laporan --}}
-    <section id="cari-laporan" class="pt-20 pb-8">
+
+    {{-- breadcumbs --}}
+    <section id="breadcumbs" class="pt-6">
         <x-container>
-            <div class="flex px-4 mb-8">
+            <div class="flex flex-wrap">
+                <div class="w-full px-4">
+                    <div class="text-sm breadcrumbs">
+                        <ul>
+                            <li><a href="{{ route('dashboard') }}">Beranda</a></li>
+                            <li class="font-semibold">Laporan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </x-container>
+    </section>
+    {{-- Akhir breadcumbs --}}
+
+    {{-- cari-laporan --}}
+    <section id="cari-laporan" class="py-12">
+        <x-container>
+            <div class="flex flex-wrap px-4 mb-8">
                 <div class="w-full flex items-center bg-white py-2 px-4 shadow-md rounded-md text-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clipboard-text"
                         width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
@@ -14,16 +32,9 @@
                         <path d="M9 12h6"></path>
                         <path d="M9 16h6"></path>
                     </svg>
-                    <h2 class="px-4 font-semibold py-4 text-2xl">Laporan</h2>
+                    <h2 class="px-4 font-semibold py-5 text-2xl">Laporan</h2>
                 </div>
             </div>
-        </x-container>
-    </section>
-    {{-- akhir laporan --}}
-
-    {{-- cari-laporan --}}
-    <section id="cari-laporan" class="pb-12">
-        <x-container>
             <div class="flex flex-wrap justify-start items-center">
                 <div class="w-1/4 px-4">
                     <form-group>

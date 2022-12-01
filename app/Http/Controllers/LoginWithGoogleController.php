@@ -28,6 +28,7 @@ class LoginWithGoogleController extends Controller
                     "email" => $user->getEmail(),
                     "google_id" => $user->getId(),
                     "level" => 2,
+                    "member" => 1,
                     "password" => encrypt('customer0002'),
                 ]);
                 Auth::login($newUser);

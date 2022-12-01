@@ -17,13 +17,13 @@
     </section>
     {{-- Akhir breadcumbs --}}
 
-    {{-- semua pelanggan --}}
-    <section id="semua-pelanggan" class="py-12">
+    {{-- semua pengguna --}}
+    <section id="semua-pengguna" class="py-12">
         <x-container>
-            <div class="flex px-4 mb-8">
+            <div class="flex flex-wrap px-4 mb-8">
                 <div class="w-full flex items-center bg-white py-2 px-4 shadow-md rounded-md text-primary">
-                    <div class="flex w-full items-center">
-                        <div class="w-1/2 flex items-center">
+                    <div class="flex flex-wrap w-full items-center">
+                        <div class="w-full md:w-1/2 flex items-center mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart"
                                 width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -35,18 +35,23 @@
                             </svg>
                             <h2 class="px-4 font-semibold py-4 text-2xl">Pengguna</h2>
                         </div>
-                        <div class="w-1/2 float-right">
+                        <div class="w-full md:w-1/2 float-right">
                             <div class="form-control">
-                                <div class="input-group">
-                                    <input type="text" placeholder="Search…" class="input input-bordered w-full" />
-                                    <button class="btn px-6 bg-secondary border-none hover:bg-primary">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                        </svg>
-                                    </button>
-                                </div>
+                                <form action="{{ route('admin.customers') }}" method="get">
+                                    @csrf
+                                    <div class="input-group">
+                                        <input type="text" placeholder="Search…" name="search"
+                                            class="input input-bordered w-full" value="{{ request('search') }}" />
+                                        <button type="submit"
+                                            class="btn px-6 bg-secondary border-none hover:bg-primary">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -63,7 +68,6 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Foto</th>
                                 <th>Nama</th>
                                 <th>Email</th>
                                 <th>Level</th>
@@ -74,10 +78,6 @@
                             @forelse ($users as $user)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>
-                                        <img src="{{ asset('storage/' . $user->image) }}" alt=""
-                                            class="rounded-md shadow w-28">
-                                    </td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
@@ -116,6 +116,19 @@
                                                     <path
                                                         d="M9 7.07a7.002 7.002 0 0 0 1 13.93a7.002 7.002 0 0 0 6.929 -5.999">
                                                     </path>
+                                                </svg></a>
+                                            <a href="{{ route('admin.user.show', $user->id) }}" class="btn btn-sm btn-success text-white"><svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="icon icon-tabler icon-tabler-eye-check" width="22"
+                                                    height="22" viewBox="0 0 24 24" stroke-width="2"
+                                                    stroke="currentColor" fill="none" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <circle cx="12" cy="12" r="2"></circle>
+                                                    <path
+                                                        d="M12 19c-4 0 -7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7c-.42 .736 -.858 1.414 -1.311 2.033">
+                                                    </path>
+                                                    <path d="M15 19l2 2l4 -4"></path>
                                                 </svg></a>
                                             <form action="{{ route('admin.user.destroy', $user->id) }}" class="inline"
                                                 method="POST">
@@ -157,5 +170,5 @@
             </div>
         </x-container>
     </section>
-    {{-- akhir semua pelanggan --}}
+    {{-- akhir semua pengguna --}}
 </x-app-layout>

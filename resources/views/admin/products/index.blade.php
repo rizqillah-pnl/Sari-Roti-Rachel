@@ -36,7 +36,7 @@
                             </svg>
                             <h2 class="px-4 font-semibold py-4 text-2xl">Produk</h2>
                         </div>
-                        <div class="w-full md:w-1/2 float-right">
+                        <div class="w-full md:w-1/2 ">
                             <div class="form-control">
                                 <form action="{{ route('admin.products') }}" method="get">
                                 @csrf
