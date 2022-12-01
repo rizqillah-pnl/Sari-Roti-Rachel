@@ -79,7 +79,7 @@
                         </svg>
                         <div
                             class="badge badge-sm border-none text-white py-2.5  bg-secondary border border-secondary shadow-lg absolute top-0 right-4 text-xs">
-                            {{ $order }}</div>
+                            1</div>
                     </label>
                 @endif
                 </a>
