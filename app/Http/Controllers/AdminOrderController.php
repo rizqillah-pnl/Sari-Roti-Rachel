@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
@@ -114,6 +115,21 @@ class AdminOrderController extends Controller
             $product = Product::where('id', $detailOrder->product_id)->first();
             $dataProduct['stok'] = $product->stok - $detailOrder->order_quantity;
             Product::where('id', $product->id)->update($dataProduct);
+        }
+
+        $order_price = Order::where('customer_name', $request->customer_name)->where('status', 1)->groupBy('total_order_price')->sum('total_order_price');
+        // dd($order_price);
+        // dd($order_price->total_order_price);
+
+        if ($order_price >= 200000) {
+            $dataLevelCokelat['member'] = 3;
+            User::where('name', $request->customer_name)->update($dataLevelCokelat);
+        }elseif ($order_price >= 100000) {
+            $dataLevelAnggur['member'] = 2;
+            User::where('name', $request->customer_name)->update($dataLevelAnggur);
+        }elseif ($order_price < 100000) {
+            $dataLevelPandan['member'] = 1;
+            User::where('name', $request->customer_name)->update($dataLevelPandan);
         }
 
         FacadesAlert::success('Berhasil', 'Pesanan Berhasil di Konfirmasi');
