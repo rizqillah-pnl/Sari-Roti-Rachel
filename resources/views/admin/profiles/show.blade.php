@@ -1,9 +1,37 @@
 <x-app-layout>
+
+    {{-- breadcumbs --}}
+    <section id="breadcumbs" class="pt-6">
+        <x-container>
+            <div class="flex flex-wrap">
+                <div class="w-full px-4">
+                    <div class="text-sm breadcrumbs">
+                        <ul>
+                            <li><a href="{{ route('dashboard') }}">Beranda</a></li>
+                            <li class="font-semibold">Profil Saya</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </x-container>
+    </section>
+    {{-- Akhir breadcumbs --}}
+
     {{-- profil --}}
     <section id="profil" class="py-12">
         <x-container>
-            <div class="w-full px-4">
-                <h4 class="text-3xl mb-2 font-semibold">Profil Anda</h4>
+            <div class="flex flex-wrap px-4 mb-8">
+                <div class="w-full flex items-center bg-white py-2 px-4 shadow-md rounded-md text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-check" width="40"
+                        height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                        <path d="M16 11l2 2l4 -4"></path>
+                    </svg>
+                    <h2 class="px-4 font-semibold py-5 text-2xl">Profil Saya</h2>
+                </div>
             </div>
             <div class="flex flex-wrap justify-between pt-12">
                 <div class="w-full md:w-1/2 px-4 mb-16">
@@ -75,12 +103,18 @@
                             <span class="text-green-500 font-semibold">Pandan</span>
                         @endif
                     </p>
-                    <p class="py-4">Kami memberikan diskon sebesar 30% dalam pembelian jika kamu mencapai level <span class="text-amber-900 font-semibold">Cokelat</span></p>
+                    <p class="py-4">Kami memberikan diskon sebesar 30% dalam pembelian jika kamu mencapai level <span
+                            class="text-amber-900 font-semibold">Cokelat</span></p>
 
                     <p>Bagaimana caranya?</p>
 
-                    <p class="py-4">Jika kamu terus membeli Sari Roti dari kami hingga total pembelian mencapai <span class="font-semibold">Rp. 100.000</span> maka level mu akan naik menjadi <span class="text-purple-500 font-semibold">Anggur</span> dengan diskon <span class="font-semibold">20%</span> </p>
-                    <p class="py-4">Ketika total pembelian mencapai <span class="font-semibold">Rp. 200.000</span> maka Level mu akan naik menjadi <span class="font-semibold text-amber-900">Cokelat</span> dan selamat, Kamu mendapatkan Diskon sebesar <span class="font-bold">30%</span></p>
+                    <p class="py-4">Jika kamu terus membeli Sari Roti dari kami hingga total pembelian mencapai <span
+                            class="font-semibold">Rp. 100.000</span> maka level mu akan naik menjadi <span
+                            class="text-purple-500 font-semibold">Anggur</span> dengan diskon <span
+                            class="font-semibold">20%</span> </p>
+                    <p class="py-4">Ketika total pembelian mencapai <span class="font-semibold">Rp. 200.000</span>
+                        maka Level mu akan naik menjadi <span class="font-semibold text-amber-900">Cokelat</span> dan
+                        selamat, Kamu mendapatkan Diskon sebesar <span class="font-bold">30%</span></p>
 
                     <a href="{{ route('produk') }}" class="mt-2 btn btn-success text-white">Ayo Belanja</a>
                 </div>

@@ -18,40 +18,47 @@
     {{-- Akhir breadcumbs --}}
 
     @if (!empty($orders))
-        {{-- cari produk --}}
-        <section id="cari-produk" class="pt-20 pb-8">
+        {{-- cart --}}
+        <section id="cart" class="py-12">
             <x-container>
-                <div class="flex flex-wrap justify-between items-center">
-                    <div class="w-full md:w-1/2 px-4">
-                        <div class="w-full flex justify-between">
-                            <div>
-                                <h2 class="text-3xl text-primary"><strong>Riwayat Pemesanan</strong></h2>
-                            </div>
+            <div class="flex flex-wrap px-4 mb-8">
+                <div class="w-full flex items-center bg-white py-2 px-4 shadow-md rounded-md text-primary">
+                    <div class="flex flex-wrap w-full items-center">
+                        <div class="w-full md:w-1/2 mb-3 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart"
+                                width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <circle cx="6" cy="19" r="2"></circle>
+                                <circle cx="17" cy="19" r="2"></circle>
+                                <path d="M17 17h-11v-14h-2"></path>
+                                <path d="M6 5l14 1l-1 7h-13"></path>
+                            </svg>
+                            <h2 class="px-4 font-semibold py-4 text-2xl">Riwayat Pemesanan</h2>
                         </div>
-                    </div>
-
-                    <div class="w-full md:w-1/2 px-4">
-                        <div class="form-control">
-                            <div class="input-group">
-                                <input type="text" placeholder="Search…" class="input input-bordered w-full" />
-                                <button class="btn px-6 bg-secondary border-none hover:bg-primary">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                    </svg>
-                                </button>
+                        <div class="w-full md:w-1/2 float-right">
+                            <div class="form-control">
+                                <form action="{{ route('admin.customers') }}" method="get">
+                                    @csrf
+                                    <div class="input-group">
+                                        <input type="text" placeholder="Search…" name="search"
+                                            class="input input-bordered w-full" value="{{ request('search') }}" />
+                                        <button type="submit"
+                                            class="btn px-6 bg-secondary border-none hover:bg-primary">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-            </x-container>
-        </section>
-        {{-- akhir cari produk --}}
 
-        {{-- cart --}}
-        <section id="cart">
-            <x-container>
+            </div>
                 <div class="w-full px-4 rounded-md">
                     <table class="table w-full pt-4">
                         <thead>

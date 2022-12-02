@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminHistoryController extends Controller
 {
-    public function index(){
-       $order = Order::where('user_id', Auth::user()->id)->where('status', 1)->get();
+    public function index()
+    {
+        $order = Order::where('user_id', Auth::user()->id)->where('status', 1)->get();
         // dd($order);
 
         if (!empty($order)) {
@@ -21,8 +22,9 @@ class AdminHistoryController extends Controller
         }
     }
 
-    public function show(OrderDetail $orderDetail){
-        $orderDetails = OrderDetail::where('order_id', $order->id)->get();
+    public function show(Order $order)
+    {
+            $orderDetails = OrderDetail::where('order_id', $order->id)->get();
 
         return view('admin.histories.show', [
             "order_details" => $orderDetails

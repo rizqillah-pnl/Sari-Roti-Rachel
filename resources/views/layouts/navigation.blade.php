@@ -49,7 +49,7 @@
                 @endphp
                 @if (!empty($order))
                     <a href="{{ route('history') }}"
-                        class="text-lg hover:rounded-lg {{ Route::is('/') ? 'font-bold text-primary' : '' }} relative"><svg
+                        class="text-lg hover:rounded-lg {{ Route::is('/') ? 'font-bold text-primary' : '' }} relative animate-bounce" onclick="cartFunction()" id="cartNotif"><svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="icon icon-tabler icon-tabler-shopping-cart mr-6 text-primary" width="28"
                             height="28" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -61,7 +61,7 @@
                             <path d="M6 5l14 1l-1 7h-13"></path>
                         </svg>
                         <div
-                            class="badge badge-sm border-none text-white py-2.5  bg-secondary border border-secondary shadow-lg absolute top-0 right-4 text-xs">
+                            class="badge badge-sm border-none text-white py-2.5  bg-secondary border border-secondary shadow-lg absolute top-0 right-4 text-xs" id="cart">
                             {{ $order }}</div>
                     </a>
                 @endif
@@ -186,6 +186,13 @@
             document.getElementById("notif").remove()
             document.getElementById("label").classList.remove('animate-bounce')
         }
+
+        function cartFunction() {
+            document.getElementById("cart").remove()
+            document.getElementById("cartNotif").classList.remove('animate-bounce')
+            // document.getElementById("cartNotif").removeAttribute("href");
+        }
+
     </script>
 
 </x-container>

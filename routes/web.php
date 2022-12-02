@@ -78,7 +78,7 @@ Route::delete('/admin/order/{order}', [AdminOrderController::class, 'destroy'])-
 
 // Admin History
 Route::get('admin/history', [AdminHistoryController::class, 'index'])->name('admin.history');
-Route::get('/admin/history/{orderdetail}', [AdminHistoryController::class, 'show'])->name('admin.history.show');
+Route::get('/admin/history/{order}', [AdminHistoryController::class, 'show'])->name('admin.history.show');
 
 // Admin Cart
 Route::get('/admin/cart', [AdminCartController::class,'index'])->name('admin.cart');
