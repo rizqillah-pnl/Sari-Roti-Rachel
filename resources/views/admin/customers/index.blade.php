@@ -89,7 +89,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="" class="btn btn-sm btn-success text-white"><svg
+                                        <a href="{{ route('admin.customers.show', $user->id) }}" class="btn btn-sm btn-success text-white"><svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 class="icon icon-tabler icon-tabler-eye-check" width="24"
                                                 height="24" viewBox="0 0 24 24" stroke-width="2"

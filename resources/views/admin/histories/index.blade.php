@@ -64,8 +64,8 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Pengguna</th>
                                 <th>Pembeli</th>
+                                <th>Pegawai</th>
                                 <th>Tanggal</th>
                                 <th>Status</th>
                                 <th>Total Harga</th>
@@ -76,8 +76,8 @@
                             @forelse ($orders as $order)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $order->user->name }}</td>
                                     <td>{{ $order->customer_name }}</td>
+                                    <td>{{ $order->user->name }}</td>
                                     <td>{{ $order->order_date }}</td>
                                     <td>
                                         @if ($order->status == 1)

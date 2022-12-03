@@ -101,6 +101,7 @@ Route::get('/admin/report', [AdminReportController::class, 'index'])->name('admi
 
 // Admin Customer
 Route::get('/admin/customers', [AdminCustomerController::class, 'index'])->name('admin.customers');
+Route::get('/admin/customers/{user}', [AdminCustomerController::class, 'show'])->name('admin.customers.show');
 Route::post('/admin/customers/{user}', [AdminCustomerController::class, 'update'])->name('admin.customers.update');
 Route::delete('/admin/customers/{id}', [AdminUserController::class, 'destroy'])->name('admin.customers.destroy');
 

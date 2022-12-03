@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomerOrder;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
@@ -18,7 +21,7 @@ class AdminCustomerController extends Controller
         if(isset($request)) {
             $user = User::where('name', 'LIKE', '%' . $request->search . '%')->where('level', 2)->paginate(8);
         }else{
-            $user = User::paginate(8);
+            $user = User::where('level', 2)->paginate(8);
         }
 
         return view('admin.customers.index', [
@@ -53,9 +56,14 @@ class AdminCustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        $order = Order::where('customer_name', $user->name)->where('status', 1)->get();
+
+        return view('admin.customers.show', [
+            "profile" => $user,
+            "orders" => $order
+        ]);
     }
 
     /**
@@ -78,8 +86,14 @@ class AdminCustomerController extends Controller
      */
     public function update(Request $request,User $user)
     {
-        $validateData['member'] = 1;
-        User::where('id', $user->id)->update($validateData);
+        $validateData['price'] = 0;
+        CustomerOrder::where('name', $user->name)->update($validateData);
+
+        $customerOrder = CustomerOrder::where('name', $user->name)->where('status', 1)->sum('price');
+        if($customerOrder === 0) {
+            $validateDataUser['member'] = 1;
+            User::where('name', $user->name)->update($validateDataUser);
+        }
 
         FacadesAlert::success('Berhasil', 'Tingkatan Pelanggan Menjadi Pandan');
         return redirect()->back();
