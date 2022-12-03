@@ -64,8 +64,8 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama</th>
-                                <th>Tanggal Pemesanan</th>
+                                <th>Nama Pembeli</th>
+                                <th>Total Pembelian</th>
                                 <th>Level</th>
                                 <th width="10%">Aksi</th>
                             </tr>
@@ -75,16 +75,14 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $user->name }}</td>
-                                    <td>{{ $user->created_at }}</td>
+                                    @php
+                                        $order = App\Models\Order::where('customer_name', $user->name)->where('status', 1)->sum('total_order_price');
+                                    @endphp
+                                    <td><strong> Rp. {{ number_format($order) }}</strong></td>
                                     <td>
-                                        @php
-                                            $order = App\Models\Order::where('status', 1)
-                                                ->where('customer_name', Auth::user()->name)
-                                                ->sum('total_order_price');
-                                        @endphp
-                                        @if ($order > 100000 && $order < 200000)
+                                        @if ($user->member === 2)
                                             <span class="bg-purple-500 rounded-full text-white  px-4 py-2">Anggur</span>
-                                        @elseif ($order > 200000)
+                                        @elseif ($user->member === 3)
                                             <span class="bg-red-900 rounded-full text-white  px-4 py-2">Cokelat</span>
                                         @else
                                             <span class="bg-green-500 rounded-full text-white  px-4 py-2">Pandan</span>
@@ -104,7 +102,7 @@
                                                 </path>
                                                 <path d="M15 19l2 2l4 -4"></path>
                                             </svg></a>
-                                            @if (Auth::user()->member === 3)
+                                            @if ($user->member === 3)
                                                 <label for="my-modal-3" class="btn btn-sm btn-warning text-white"><svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 class="icon icon-tabler icon-tabler-edit-circle" width="22"
@@ -121,31 +119,6 @@
                                                 </path>
                                             </svg></label>
                                         @endif
-                                        <form action="{{ route('admin.customers.destroy', $user->id) }}"
-                                            method="post">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="btn btn-sm btn-error text-white"><svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    class="icon icon-tabler icon-tabler-trash" width="22"
-                                                    height="22" viewBox="0 0 24 24" stroke-width="2"
-                                                    stroke="currentColor" fill="none" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                    <line x1="4" y1="7" x2="20"
-                                                        y2="7">
-                                                    </line>
-                                                    <line x1="10" y1="11" x2="10"
-                                                        y2="17">
-                                                    </line>
-                                                    <line x1="14" y1="11" x2="14"
-                                                        y2="17">
-                                                    </line>
-                                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
-                                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
-                                                </svg></button>
-
-                                        </form>
                                     </td>
                                 </tr>
                             @empty
@@ -167,7 +140,7 @@
             <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-lg font-semibold mb-5">Ubah Level Pelanggan!</h3>
             <div class="form-group">
-                <form action="{{ route('admin.customers') }}" method="post">
+                <form action="{{ route('admin.customers.update', $user->id) }}" method="post">
                     @csrf
                     <input type="text" name="member" class="input input-bordered w-full" placeholder="Panda" hidden >
                     <button class="btn btn-success text-white">Pandan</button>

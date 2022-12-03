@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomerOrder;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
@@ -54,6 +55,7 @@ class AdminOrderController extends Controller
             "total_order" => "required|numeric"
         ]);
 
+        // Order
         if ($request->total_order > $product->stok) {
             FacadesAlert::error('Gagal', 'Jumlah Pesanan melebihi stok produk');
             return redirect()->back();
@@ -69,9 +71,23 @@ class AdminOrderController extends Controller
             $dataOrder['total_order_price'] = $product->price * $request->total_order;
             Order::create($dataOrder);
         } else {
-            $newPriceOrder = $product->price * $request->total_order;
+            $newPriceOrder = $product->price * $resquest->total_order;
             $newDataOrder['total_order_price'] = $newPriceOrder + $checkOrder->total_order_price;
             Order::where('id', $checkOrder->id)->update($newDataOrder);
+        }
+
+        // CutomerOrder
+        if (empty($checkOrder)) {
+            $dataCustomerOrder['order_id'] = 0;
+            $dataCustomerOrder['name'] = "-";
+            $dataCustomerOrder['date'] = now();
+            $dataCustomerOrder['status'] = 0;
+            $dataCustomerOrder['price'] = $product->price * $request->total_order;
+            CustomerOrder::create($dataCustomerOrder);
+        } else {
+            $newPriceCustomerOrder = $product->price * $request->total_order;
+            $newDataCustomerOrder['price'] = $newPriceCustomerOrder + $checkOrder->total_order_price;
+            CustomerOrder::where('id', $checkOrder->id)->update($newDataCustomerOrder);
         }
 
         // Order Details
@@ -110,6 +126,12 @@ class AdminOrderController extends Controller
         $dataOrder['status'] = 1;
         Order::where('id', $order->id)->update($dataOrder);
 
+        $customerOrder = CustomerOrder::where('status', 0)->first();
+        $dataCustomerOrder['order_id'] = $order->id;
+        $dataCustomerOrder['name'] = $request->customer_name;
+        $dataCustomerOrder['status'] = 1;
+        CustomerOrder::where('id', $customerOrder->id)->update($dataCustomerOrder);
+
         $detailOrders = OrderDetail::where('order_id', $order->id)->get();
         foreach ($detailOrders as $detailOrder) {
             $product = Product::where('id', $detailOrder->product_id)->first();
@@ -117,17 +139,17 @@ class AdminOrderController extends Controller
             Product::where('id', $product->id)->update($dataProduct);
         }
 
-        $order_price = Order::where('customer_name', $request->customer_name)->where('status', 1)->groupBy('total_order_price')->sum('total_order_price');
+        $order_price = CustomerOrder::where('name', $request->customer_name)->where('status', 1)->groupBy('price')->sum('price');
         // dd($order_price);
         // dd($order_price->total_order_price);
 
         if ($order_price >= 200000) {
             $dataLevelCokelat['member'] = 3;
             User::where('name', $request->customer_name)->update($dataLevelCokelat);
-        }elseif ($order_price >= 100000) {
+        } elseif ($order_price >= 100000) {
             $dataLevelAnggur['member'] = 2;
             User::where('name', $request->customer_name)->update($dataLevelAnggur);
-        }elseif ($order_price < 100000) {
+        } elseif ($order_price < 100000) {
             $dataLevelPandan['member'] = 1;
             User::where('name', $request->customer_name)->update($dataLevelPandan);
         }

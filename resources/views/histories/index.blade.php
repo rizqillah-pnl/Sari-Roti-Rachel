@@ -62,10 +62,9 @@
 
                 </div>
                 @php
-                    $order = App\Models\Order::where('status', 1)
-                        ->where('customer_name', Auth::user()->name)
-                        ->whereMonth('order_date', date('m'))
-                        ->sum('total_order_price');
+                    $order = App\Models\CustomerOrder::where('status', 1)
+                        ->where('name', Auth::user()->name)
+                        ->sum('price');
                 @endphp
                 <div class="w-full flex justify-between px-4 mb-8">
                     <div>
@@ -88,7 +87,7 @@
 
                     <div>
                         <h4>Total Pemesanan</h4>
-                        <p class="font-semibold text-right">Rp. {{ $order }}</p>
+                        <p class="font-semibold text-right">Rp. {{ number_format($order) }}</p>
                     </div>
                 </div>
                 <div class="flex flex-wrap">
