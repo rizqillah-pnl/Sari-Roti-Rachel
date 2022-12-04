@@ -98,12 +98,12 @@
                                     <li class="bg-white">
                                         <label for="harga" class="block mb-2 text-dark text-sm">Tanggal
                                             Pesanan</label>
-                                        <span class="text-dark font-medium"> {{ $order->order_date }}</span>
+                                        <span class="text-dark font-medium"> {{ $order->date }}</span>
                                     </li>
                                     <li class="bg-white">
                                         <label for="harga" class="block mb-2 text-dark text-sm">Harga</label>
                                         <span class="text-dark font-medium">
-                                            Rp.{{ number_format($order->total_order_price) }}</span>
+                                            Rp.{{ number_format($order->price) }}</span>
                                     </li>
                                     <li class="bg-white flex justify-center items-center">
                                         <a href="{{ route('history.show', $order->id) }}"

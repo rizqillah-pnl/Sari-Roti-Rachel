@@ -35,24 +35,35 @@
                     <h2 class="px-4 font-semibold py-5 text-2xl">Laporan</h2>
                 </div>
             </div>
-            <div class="flex flex-wrap justify-start items-center">
+            <form class="flex flex-wrap justify-start items-center" action="{{ route('admin.report') }}" method="get">
+            @csrf
                 <div class="w-1/4 px-4">
-                    <form-group>
-                        <label for="">Dari Tanggal</label>
-                        <input type="date" class="w-full rounded-md border-gray focus:ring-secondary focus:border-0">
-                    </form-group>
+                    <div class="form-group">
+                        <label for="report">Pilih Jenis Laporan</label>
+                        <select name="" id="report" class="select w-full select-bordered" onchange="tes()">
+                            <option value="day" id="day">Harian</option>
+                            <option value="week" id="week">Mingguan</option>
+                            <option value="month" id="month">Bulanan</option>
+                            <option value="year" id="year">Tahunan</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="w-1/4 px-4">
-                    <form-group>
-                        <label for="">Sampai Tanggal</label>
-                        <input type="date" class="w-full rounded-md border-gray focus:ring-secondary focus:border-0">
-                    </form-group>
+                <div class="w-1/8 px-4 hidden" id="inWeek">
+                    <div class="form-group">
+                        <label for="report">Minggu Ke-</label>
+                        <select name="day" id="report" class="select w-1/2 select-bordered" onchange="tes()">
+                            <option value="1" id="1">1</option>
+                            <option value="2" id="2">2</option>
+                            <option value="3" id="3">3</option>
+                            <option value="4" id="4">4</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="w-1/4 px-4">
                     <button type="submit"
                         class="px-4 py-2.5 rounded-md text-white bg-secondary mt-6">Tampilkan</button>
                 </div>
-            </div>
+            </form>
         </x-container>
     </section>
     {{-- akhir-cari-laporan --}}
@@ -114,8 +125,8 @@
                                     <a href="" class="btn btn-sm btn-error text-white"><svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="icon icon-tabler icon-tabler-trash" width="22" height="22"
-                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                            stroke-linecap="round" stroke-linejoin="round">
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                             <line x1="4" y1="7" x2="20" y2="7">
                                             </line>
@@ -136,5 +147,19 @@
         </x-container>
     </section>
     {{-- akhir-tampilam-laporan --}}
+
+    <script>
+            function tes() {
+                var tes = document.getElementById("report").value;
+                // console.log(tes)
+                if (tes == "week") {
+                    document.getElementById("inWeek").classList.add('block');
+                    document.getElementById("inWeek").classList.remove('hidden');
+                }else{
+                    document.getElementById("inWeek").classList.add('hidden');
+                    document.getElementById("inWeek").classList.remove('block');
+                }
+            }
+    </script>
 
 </x-app-layout>

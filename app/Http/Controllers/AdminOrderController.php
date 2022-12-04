@@ -71,7 +71,7 @@ class AdminOrderController extends Controller
             $dataOrder['total_order_price'] = $product->price * $request->total_order;
             Order::create($dataOrder);
         } else {
-            $newPriceOrder = $product->price * $resquest->total_order;
+            $newPriceOrder = $product->price * $request->total_order;
             $newDataOrder['total_order_price'] = $newPriceOrder + $checkOrder->total_order_price;
             Order::where('id', $checkOrder->id)->update($newDataOrder);
         }
@@ -146,7 +146,7 @@ class AdminOrderController extends Controller
         if ($order_price >= 200000) {
             $dataLevelCokelat['member'] = 3;
             User::where('name', $request->customer_name)->update($dataLevelCokelat);
-        } elseif ($order_price >= 100000) {
+        } elseif ($order_price >= 100000 && $order_price < 200000) {
             $dataLevelAnggur['member'] = 2;
             User::where('name', $request->customer_name)->update($dataLevelAnggur);
         } elseif ($order_price < 100000) {

@@ -102,6 +102,7 @@
                                                     </line>
                                                 </svg></a>
                                         @elseif($user->level == 2)
+                                            @if (!$user->level == 2)
                                             <a href="" class="btn btn-sm btn-warning text-white"><svg
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     class="icon icon-tabler icon-tabler-edit-circle" width="22"
@@ -117,6 +118,7 @@
                                                         d="M9 7.07a7.002 7.002 0 0 0 1 13.93a7.002 7.002 0 0 0 6.929 -5.999">
                                                     </path>
                                                 </svg></a>
+                                                  @endif
                                             <a href="{{ route('admin.user.show', $user->id) }}" class="btn btn-sm btn-success text-white"><svg
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     class="icon icon-tabler icon-tabler-eye-check" width="22"

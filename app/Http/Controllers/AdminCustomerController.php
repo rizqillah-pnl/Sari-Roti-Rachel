@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\CustomerOrder;
 use App\Models\Order;
-use App\Models\OrderDetail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
@@ -84,13 +83,14 @@ class AdminCustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,User $user)
+    public function update(User $user)
     {
-        $validateData['price'] = 0;
-        CustomerOrder::where('name', $user->name)->update($validateData);
+        // dd($user->name);
+        CustomerOrder::where('name', $user->name)->delete();
 
         $customerOrder = CustomerOrder::where('name', $user->name)->where('status', 1)->sum('price');
-        if($customerOrder === 0) {
+
+        if(!$customerOrder) {
             $validateDataUser['member'] = 1;
             User::where('name', $user->name)->update($validateDataUser);
         }

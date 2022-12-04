@@ -42,9 +42,9 @@
             @if (Auth::user())
                 @php
                     if (!empty(Auth::user()->id)) {
-                        $order = App\Models\Order::where('status', 1)
-                            ->where('customer_name', Auth::user()->name)
-                            ->count('customer_name');
+                        $order = App\Models\CustomerOrder::where('status', 1)
+                            ->where('name', Auth::user()->name)
+                            ->count('name');
                     }
                 @endphp
                 @if (!empty($order))
